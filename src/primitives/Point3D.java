@@ -2,10 +2,16 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * Point3D class is represent a point in the plan
+ */
 public class Point3D {
-    final Coordinate _x;
-    final Coordinate _y;
-    final Coordinate _z;
+
+    Coordinate _x;
+    Coordinate _y;
+    Coordinate _z;
+
+    final static Point3D ZERO = new Point3D(0,0,0);
 
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         this(_x.coord, _y.coord, _z.coord);
@@ -17,24 +23,33 @@ public class Point3D {
         this._z = new Coordinate(z);
     }
 
-    public Coordinate get_x() {
-        return _x;
-    }
 
-    public Coordinate get_y() {
-        return _y;
-    }
-
-    public Coordinate get_z() {
-        return _z;
-    }
-
-public Point3D add(Vector vector){
+    public Point3D add(Vector vector){
         return  new Point3D(
                 _x.coord + vector._head._x.coord,
                 _y.coord + vector._head._y.coord,
                 _z.coord + vector._head._z.coord);
-}
+    }
+
+    public Vector subtract(Point3D secPoint){
+        return new Vector(
+                _x.coord-secPoint._x.coord,
+                _y.coord-secPoint._y.coord,
+                _z.coord-secPoint._z.coord);
+    }
+
+    public double distanceSquared(Point3D pnt){
+        return (
+                (_x.coord-pnt._x.coord)*(_x.coord-pnt._x.coord) +
+                (_y.coord-pnt._y.coord)*(_y.coord-pnt._y.coord)+
+                (_z.coord-pnt._z.coord)*(_z.coord-pnt._z.coord));
+    }
+
+    public double distance(Point3D pnt){
+        return (Math.sqrt(distanceSquared(pnt)));
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -46,10 +61,9 @@ public Point3D add(Vector vector){
 
     @Override
     public String toString() {
-        return "Point3D{" +
-                "_x=" + _x +
-                ", _y=" + _y +
-                ", _z=" + _z +
-                '}';
+        return "("  + _x +
+                ", " + _y +
+                ", " + _z +
+                ')';
     }
 }
