@@ -11,7 +11,7 @@ public class Point3D {
     Coordinate _y;
     Coordinate _z;
 
-    final static Point3D ZERO = new Point3D(0,0,0);
+    public final static Point3D ZERO = new Point3D(0,0,0);
 
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         this(_x.coord, _y.coord, _z.coord);
