@@ -48,10 +48,9 @@ public class Vector {
                 _head._z.coord * k);
     }
 
-    public Vector dotProduct(Vector vec){
-        return new Vector(
-                _head._x.coord * vec._head._x.coord,
-                _head._y.coord * vec._head._y.coord,
+    public double dotProduct(Vector vec){
+        return (_head._x.coord * vec._head._x.coord +
+                _head._y.coord * vec._head._y.coord +
                 _head._z.coord * vec._head._z.coord);
     }
 
