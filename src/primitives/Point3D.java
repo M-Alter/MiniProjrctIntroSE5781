@@ -7,12 +7,14 @@ import java.util.Objects;
  */
 public class Point3D {
 
+    // fields
     Coordinate _x;
     Coordinate _y;
     Coordinate _z;
-
+    // const zero point
     public final static Point3D ZERO = new Point3D(0,0,0);
 
+    // constructors
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         this(_x.coord, _y.coord, _z.coord);
     }
@@ -23,7 +25,6 @@ public class Point3D {
         this._z = new Coordinate(z);
     }
 
-
     public Point3D add(Vector vector){
         return  new Point3D(
                 _x.coord + vector._head._x.coord,
@@ -31,6 +32,7 @@ public class Point3D {
                 _z.coord + vector._head._z.coord);
     }
 
+    // functions
     public Vector subtract(Point3D secPoint){
         return new Vector(
                 _x.coord-secPoint._x.coord,
@@ -50,7 +52,7 @@ public class Point3D {
     }
 
 
-
+    // override functions
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -8,8 +8,10 @@ import static primitives.Point3D.*;
  */
 public class Vector {
 
+    // variable
     Point3D _head;
 
+    // constructors
     public Vector(Point3D head) {
         this._head = new Point3D(head._x, head._y, head._z);
     }
@@ -32,6 +34,12 @@ public class Vector {
         this(x.coord,y.coord,z.coord);
     }
 
+    // getters
+    public Point3D getHead() {
+        return _head;
+    }
+
+    // functions
     public Vector add(Vector vec){
         return new Vector(
                 _head._x.coord + vec._head._x.coord,
@@ -94,16 +102,13 @@ public class Vector {
         return new Vector(_head).normalize();
     }
 
+    // override functions
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector vector = (Vector) o;
         return _head.equals(vector._head);
-    }
-
-    public Point3D getHead() {
-        return _head;
     }
 
     @Override
