@@ -4,9 +4,8 @@ import java.util.Objects;
 import static primitives.Point3D.*;
 
 /**
- * Vector class is represent a vector in the plan
+ * class that represents a vector
  */
-
 public class Vector {
 
     Point3D _head;
@@ -15,6 +14,12 @@ public class Vector {
         this._head = new Point3D(head._x, head._y, head._z);
     }
 
+    /**
+     * c'tor to create a vector with 3 doubles
+     * @param x
+     * @param y
+     * @param z
+     */
     public Vector(double x, double y, double z){
         Point3D pnt = new Point3D(x,y,z);
         if(ZERO.equals(pnt)){
