@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Ray {
 
     // variables
-    Point3D p0;
-    Vector dir;
+    final Point3D p0;
+    final Vector dir;
 
     // constructor
     public Ray(Point3D pnt, Vector vec){

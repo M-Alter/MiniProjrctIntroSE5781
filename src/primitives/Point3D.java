@@ -7,23 +7,40 @@ import java.util.Objects;
  */
 public class Point3D {
 
-    // fields
-    Coordinate _x;
-    Coordinate _y;
-    Coordinate _z;
-    // const zero point
+    /**
+     * x, y, z coordinates of the point
+     */
+    final Coordinate _x;
+    final Coordinate _y;
+    final Coordinate _z;
+
+    /**
+     * ZERO point (0,0,0)
+     */
     public final static Point3D ZERO = new Point3D(0,0,0);
 
-    // constructors
+    /**
+     * Constructor of point that receive 3 coordinates
+     * @param _x x coordinate of the point
+     * @param _y y coordinate of the point
+     * @param _z z coordinate of the point
+     */
     public Point3D(Coordinate _x, Coordinate _y, Coordinate _z) {
         this(_x.coord, _y.coord, _z.coord);
     }
 
+    /**
+     * Constructor of point that receive 3 double
+     * @param x
+     * @param y
+     * @param z
+     */
     public Point3D(double x, double y, double z) {
         this._x = new Coordinate(x);
         this._y = new Coordinate(y);
         this._z = new Coordinate(z);
     }
+
 
     public Point3D add(Vector vector){
         return  new Point3D(
