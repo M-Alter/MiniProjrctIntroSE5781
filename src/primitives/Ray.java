@@ -15,11 +15,11 @@ public class Ray {
     }
 
     // getters
-    private Point3D getP0() {
+    public Point3D getP0() {
         return p0;
     }
 
-    private Vector getDir() {
+    public Vector getDir() {
         return dir;
     }
 
