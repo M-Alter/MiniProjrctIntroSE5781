@@ -14,7 +14,15 @@ public class Plane implements Geometry{
 
     public Plane(Point3D vertex1, Point3D vertex2, Point3D vertex3) {
         this.q0 = vertex1;
-        this.normal = null;
+        if (vertex1.equals(vertex2) || vertex1.equals(vertex3) || vertex2.equals(vertex3))
+            throw new IllegalArgumentException("2 points cannot be the same");
+       try {
+           Vector n = vertex2.subtract(vertex1).crossProduct(vertex3.subtract(vertex1));
+           this.normal = n;
+       }
+       catch (IllegalArgumentException e) {
+           throw new IllegalArgumentException("2 points cannot be the same");
+       }
     }
 
 

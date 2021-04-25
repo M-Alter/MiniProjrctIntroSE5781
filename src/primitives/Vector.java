@@ -103,7 +103,7 @@ public class Vector {
     public Vector crossProduct(Vector vec){
         return new Vector(
                 _head._y.coord * vec._head._z.coord - _head._z.coord * vec._head._y.coord,
-                - (_head._x.coord * vec._head._z.coord - _head._z.coord * vec._head._x.coord),
+                _head._z.coord * vec._head._x.coord - _head._x.coord * vec._head._z.coord ,
                 _head._x.coord * vec._head._y.coord - _head._y.coord * vec._head._x.coord
         );
     }
