@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 public class Sphere implements Geometry{
     Point3D center;
@@ -27,5 +30,10 @@ public class Sphere implements Geometry{
        if(pnt.equals(center))
            throw new IllegalArgumentException("The points for normal has to be different");
        return pnt.subtract(center).normalized();
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }

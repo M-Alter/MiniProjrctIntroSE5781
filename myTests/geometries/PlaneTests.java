@@ -39,7 +39,8 @@ public class PlaneTests {
                     new Point3D(1, 0, 0),
                     new Point3D(3, 3, 3));
             fail("You should have received an error");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
 
     }
