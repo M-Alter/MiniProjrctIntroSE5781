@@ -18,7 +18,7 @@ public class Plane implements Geometry{
             throw new IllegalArgumentException("2 points cannot be the same");
        try {
            Vector n = vertex2.subtract(vertex1).crossProduct(vertex3.subtract(vertex1));
-           this.normal = n;
+           this.normal = n.normalized();
        }
        catch (IllegalArgumentException e) {
            throw new IllegalArgumentException("2 points cannot be the same");
