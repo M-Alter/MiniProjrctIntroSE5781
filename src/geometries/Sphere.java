@@ -58,9 +58,9 @@ public class Sphere implements Geometry{
         double t1 = tM + tH;
         double t2 = tM - tH;
         // Add the intersections points to the list
-        result.add(ray.getP0().add(ray.getDir().scale(t1)));
+        result.add(ray.getPoint(t1));
         if (t2 > 0 ){
-            result.add(ray.getP0().add(ray.getDir().scale(t2)));
+            result.add(ray.getPoint(t2));
         }
         return result;
     }

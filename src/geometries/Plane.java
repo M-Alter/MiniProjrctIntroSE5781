@@ -74,7 +74,7 @@ public class Plane implements Geometry {
         }
         // Add the intersection to the list and return the list
         result = new LinkedList<Point3D>();
-        result.add(ray.getP0().add(ray.getDir().scale(t)));
+        result.add(ray.getPoint(t));
 
         return result;
     }

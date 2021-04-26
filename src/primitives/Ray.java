@@ -1,26 +1,24 @@
 package primitives;
 
-import java.util.Objects;
-
 public class Ray {
 
     // variables
-    final Point3D p0;
-    final Vector dir;
+    final Point3D _p0;
+    final Vector _dir;
 
     // constructor
     public Ray(Point3D pnt, Vector vec){
-        p0 = new Point3D(pnt._x, pnt._y, pnt._z);
-        dir = vec.normalized();
+        _p0 = new Point3D(pnt._x, pnt._y, pnt._z);
+        _dir = vec.normalized();
     }
 
     // getters
     public Point3D getP0() {
-        return p0;
+        return _p0;
     }
 
     public Vector getDir() {
-        return dir;
+        return _dir;
     }
 
     // override functions
@@ -30,12 +28,21 @@ public class Ray {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ray ray = (Ray) o;
-        return p0.equals(ray.p0) && dir.equals(ray.dir);
+        return _p0.equals(ray._p0) && _dir.equals(ray._dir);
+    }
+
+    /**
+     * find the point that 't' * _dir away from the _p0
+     * @param t distance from p0
+     * @return the point
+     */
+    public Point3D getPoint(double t){
+        return _p0.add(_dir.scale(t));
     }
 
     @Override
     public String toString() {
-        return  "p0 = " + p0.toString() +
-                ", dir = " + dir;
+        return  "p0 = " + _p0.toString() +
+                ", dir = " + _dir;
     }
 }
