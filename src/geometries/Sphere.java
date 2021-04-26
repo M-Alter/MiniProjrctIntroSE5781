@@ -3,12 +3,15 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
+import javax.imageio.ImageTranscoder;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Sphere implements Geometry{
-    Point3D center;
-    double radius;
+    Point3D _center;
+    double _radius;
 
     /**
      * Constructor of sphere
@@ -16,8 +19,8 @@ public class Sphere implements Geometry{
      * @param radius radius distance between the center to the central point
      */
    public Sphere(Point3D center, double radius) {
-        this.center = center;
-        this.radius = radius;
+        this._center = center;
+        this._radius = radius;
     }
 
     /**
@@ -27,13 +30,38 @@ public class Sphere implements Geometry{
      */
     @Override
     public Vector getNormal(Point3D pnt) {
-       if(pnt.equals(center))
+       if(pnt.equals(_center))
            throw new IllegalArgumentException("The points for normal has to be different");
-       return pnt.subtract(center).normalized();
+       return pnt.subtract(_center).normalized();
     }
 
+    /**
+     * Find the intersections between a ray to a sphere
+     * @param ray
+     * @return A list of the intersections
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        return null;
+        List<Point3D> result;
+        // Parameters for calculation
+        Vector u = this._center.subtract(ray.getP0());
+        double tM = ray.getDir().dotProduct(u);
+        double d = Math.sqrt(u.lengthSquared() - tM*tM);
+        // Return null in case there are no intersections
+        if(d>_radius){
+            return null;
+        }
+        // Init the list where there are intersections
+        result = new LinkedList<Point3D>();
+        // Parameters for calculations
+        double tH = Math.sqrt(_radius*_radius - d*d);
+        double t1 = tM + tH;
+        double t2 = tM - tH;
+        // Add the intersections points to the list
+        result.add(ray.getP0().add(ray.getDir().scale(t1)));
+        if (t2 > 0 ){
+            result.add(ray.getP0().add(ray.getDir().scale(t2)));
+        }
+        return result;
     }
 }
