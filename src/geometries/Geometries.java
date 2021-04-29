@@ -28,8 +28,24 @@ public class Geometries implements Intersectable {
         _geometries.addAll(Arrays.asList(geometries));
     }
 
+    /**
+     * Find the intersection between a ray to a geometry
+     * @param ray
+     * @return A list of all intersections of the ray with all geometries
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        return null;
+        List<Point3D> result = null;
+        List<Point3D> temp;
+        for (Intersectable item: _geometries) {
+            temp = item.findIntersections(ray);
+            if (temp != null){
+                if (result == null){
+                    result = new LinkedList<Point3D>();
+                }
+                result.addAll(temp);
+            }
+        }
+        return result;
     }
 }

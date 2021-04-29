@@ -19,6 +19,18 @@ public class Point3D {
      */
     public final static Point3D ZERO = new Point3D(0,0,0);
 
+    public double getX() {
+        return _x.coord;
+    }
+
+    public double getY() {
+        return _y.coord;
+    }
+
+    public double getZ() {
+        return _z.coord;
+    }
+
     /**
      * Constructor of point that receive 3 coordinates
      * @param _x x coordinate of the point

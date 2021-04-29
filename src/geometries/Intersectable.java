@@ -9,5 +9,5 @@ import java.util.List;
  * A list of points that the ray meets the geometric bodies
  */
 public interface Intersectable {
-    List<Point3D> findIntersections(Ray ray);
+    public List<Point3D> findIntersections(Ray ray);
 }
