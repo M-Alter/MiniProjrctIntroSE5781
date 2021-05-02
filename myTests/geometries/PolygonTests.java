@@ -25,6 +25,8 @@ import static primitives.Util.isZero;
 import geometries.*;
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Testing Polygons
  *
@@ -111,4 +113,24 @@ public class  PolygonTests {
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)), "Bad normal to trinagle");
     }
+
+
+//    /**
+//     * Test for method findIntersections {@link geometries.Polygon#findIntersections(Ray)}.
+//     */
+//    @Test
+//    public void intersectionsTest(){
+//        Polygon polygon = new Polygon(
+//                new Point3D(2,2,2),
+//                new Point3D(3,1,2),
+//                new Point3D(2,-4,2),
+//                new Point3D(-2,-2,2),
+//                new Point3D(-2,2,2));
+//
+//        //===================================ep tests==============================================
+//        //tc02 point is in the triangle
+//        List<Point3D> result = polygon.findIntersections(new Ray(new Point3D(0, 0, 0), new Vector(-1, -1, 2)));
+//        assertEquals(1, result.size(), "this ray has 1 intersection with the triangle");
+//
+//    }
 }

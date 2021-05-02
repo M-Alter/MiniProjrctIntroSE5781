@@ -14,7 +14,7 @@ import primitives.Point3D;
 
 class TriangleTest {
     @Test
-    public void evTests() {
+    public void intersectionsTest() {
         Triangle triangle = new Triangle(new Point3D(1, 0, 1), new Point3D(0, 1, 1), new Point3D(1, 1, 1));
         //===================================ep tests==============================================
         //tc01 point is in the triangle
