@@ -42,7 +42,7 @@ public class Sphere implements Geometry{
      */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result;
+        List<Point3D> result = null;
         // Parameters for calculation
         Vector u = this._center.subtract(ray.getP0());
         double tM = ray.getDir().dotProduct(u);
@@ -51,15 +51,22 @@ public class Sphere implements Geometry{
         if(d>_radius){
             return null;
         }
-        // Init the list where there are intersections
-        result = new LinkedList<Point3D>();
+
         // Parameters for calculations
         double tH = Math.sqrt(_radius*_radius - d*d);
         double t1 = tM + tH;
         double t2 = tM - tH;
         // Add the intersections points to the list
-        result.add(ray.getPoint(t1));
+        if (t1 > 0 ) {
+            // Init the list where there are intersections
+            result = new LinkedList<Point3D>();
+            result.add(ray.getPoint(t1));
+        }
         if (t2 > 0 ){
+            if(result == null){
+                // Init the list where there are intersections
+                result = new LinkedList<Point3D>();
+            }
             result.add(ray.getPoint(t2));
         }
         return result;

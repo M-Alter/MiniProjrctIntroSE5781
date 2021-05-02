@@ -31,7 +31,7 @@ import primitives.*;
  * @author Dan
  *
  */
-public class PolygonTests {
+public class  PolygonTests {
 
     /**
      * Test method for
