@@ -122,12 +122,15 @@ public class Camera {
         double rY = _height/nY;
         double rX = _width/nX;
 
-        double yI = -(i-(nY-1)/2)*rY;
-        double xJ = (j-(nX-1)/2)*rX;
+        double yI = -(i-((nY-1)/2d))*rY;
+        double xJ = (j-(nX-1)/2d)*rX;
 
-        Vector vIJ = _vRight.scale(xJ).add(_vUp.scale(yI));
+        Point3D pIJ = pC.add(_vRight.scale(xJ).add(_vUp.scale(yI)));
+        Vector vIJ = pIJ.subtract(_p0);
+        //Vector vIJ = _vRight.scale(xJ).add(_vUp.scale(yI));
 
-        return new Ray(pC,vIJ);
+
+        return new Ray(_p0,vIJ);
 
     }
 }
