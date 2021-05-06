@@ -7,6 +7,10 @@ import primitives.Vector;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 class GeometriesTests {
+    /**
+     * Test method for
+     *{@link geometries.Geometries#findIntersections(Ray)}.
+     */
     @Test
     public void intersectionsTest(){
         // ============ Equivalence Partitions Tests ==============
@@ -32,8 +36,6 @@ class GeometriesTests {
 
         // TC05: All shapes are cut
         assertEquals( 4, geometries.findIntersections(new Ray(new Point3D(0.5, 6, 0.5), new Vector(0, -1, 0))).size(),("Only one shape is cut"));
-
-
 
     }
 }

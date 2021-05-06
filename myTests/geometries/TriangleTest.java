@@ -9,10 +9,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import primitives.Point3D;
 
 
 class TriangleTest {
+
+    /**
+     * test for find intersection
+     * {@link geometries.Triangle#findIntersections(Ray)}
+     */
     @Test
     public void intersectionsTest() {
         Triangle triangle = new Triangle(new Point3D(1, 0, 1), new Point3D(0, 1, 1), new Point3D(1, 1, 1));
@@ -40,5 +44,7 @@ class TriangleTest {
 
         //tc06  ray meets the continue of the vertex
         result = triangle.findIntersections(new Ray(new Point3D(0, 0, 0), new Vector(1, 1.5, 1)));
+        assertNull(result,"ray meets on the continuation of the triangle and doesn't intersect with the triangle");
+
     }
 }

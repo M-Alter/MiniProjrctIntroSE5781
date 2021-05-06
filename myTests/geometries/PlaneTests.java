@@ -13,6 +13,7 @@ public class PlaneTests {
 
     /**
      * Testing the normal of a plane
+     * {@link Plane#getNormal()}
      */
     @Test
     public void normalTest() {
@@ -24,6 +25,7 @@ public class PlaneTests {
 
     /**
      * Verify there is no a plane with 2 same points or 3 points that created a vector
+     * {@link geometries.Plane#Plane(Point3D, Point3D, Point3D)}
      */
 
     @Test
@@ -34,20 +36,23 @@ public class PlaneTests {
                     new Point3D(2, 0, 0),
                     new Point3D(3, 0, 0));
             fail("You should have received an error");
-        } catch (IllegalArgumentException e) {
-        }
+        } catch (IllegalArgumentException e){
+            /* no nothing */}
         try {
             Plane plane = new Plane(
                     new Point3D(1, 0, 0),
                     new Point3D(1, 0, 0),
                     new Point3D(3, 3, 3));
             fail("You should have received an error");
-        }
-        catch (IllegalArgumentException e) {
-        }
+        } catch (IllegalArgumentException e){
+            /* no nothing */}
 
     }
 
+    /**
+     * test for find intersections
+     * {@link geometries.Plane#findIntersections(Ray)}
+     */
     @Test
     public void intersectionsTest() {
         Plane plane = new Plane(new Point3D(1,1,1), new Vector(0,0,-1));

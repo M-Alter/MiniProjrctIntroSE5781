@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SphereTests {
     /**
      * Testing the normal of a sphere
+     * {@link geometries.Sphere#getNormal(Point3D)}
      */
     @Test
     public void normalTest() {
@@ -81,10 +82,9 @@ public class SphereTests {
                 new Vector(-1,0,0)));
         assertEquals(1,result.size(),"Wrong number of points");
         // TC16: Ray starts at the center (1 points)
-        //TODO zero vector when subtracting p0 from centre
-//        result = sphere.findIntersections(new Ray((new Point3D(1,0,0)),
-//                new Vector(0,1,0)));
-//        assertEquals(1,result.size(),"Wrong number of points");
+        result = sphere.findIntersections(new Ray((new Point3D(1,0,0)),
+                new Vector(0,1,0)));
+        assertEquals(1,result.size(),"Wrong number of points");
         // TC17: Ray starts at sphere and goes outside (0 points)
         result = sphere.findIntersections(new Ray((new Point3D(2,0,0)),
                 new Vector(1,0,0)));

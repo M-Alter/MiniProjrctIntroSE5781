@@ -25,7 +25,7 @@ public class Sphere implements Geometry{
 
     /**
      * Normal of a sphere to a point
-     * @param pnt
+     * @param pnt the point to get the normal to
      * @return Normal of a sphere to a point
      */
     @Override
@@ -37,14 +37,20 @@ public class Sphere implements Geometry{
 
     /**
      * Find the intersections between a ray to a sphere
-     * @param ray
+     * @param ray ray the runs through the geometry
      * @return A list of the intersections
      */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> result = null;
         // Parameters for calculation
-        Vector u = this._center.subtract(ray.getP0());
+        Vector u;
+        //if ray.p0 == _centre prevent zero vector
+        try{
+            u = this._center.subtract(ray.getP0());
+        }catch (IllegalArgumentException e){
+            return List.of(ray.getPoint(this._radius));
+        }
         double tM = ray.getDir().dotProduct(u);
         double d = Math.sqrt(u.lengthSquared() - tM*tM);
         // Return null in case there are no intersections
@@ -59,13 +65,13 @@ public class Sphere implements Geometry{
         // Add the intersections points to the list
         if (t1 > 0 ) {
             // Init the list where there are intersections
-            result = new LinkedList<Point3D>();
+            result = new LinkedList<>();
             result.add(ray.getPoint(t1));
         }
         if (t2 > 0 ){
             if(result == null){
                 // Init the list where there are intersections
-                result = new LinkedList<Point3D>();
+                result = new LinkedList<>();
             }
             result.add(ray.getPoint(t2));
         }

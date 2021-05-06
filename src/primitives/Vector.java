@@ -1,5 +1,5 @@
 package primitives;
-import java.util.Objects;
+
 
 import static primitives.Point3D.*;
 
@@ -136,10 +136,6 @@ public class Vector {
                 _head._x.coord / length,
                 _head._y.coord / length,
                 _head._z.coord / length);
-        // Should verify if _haed can be not final
-//        this._head._x = new Coordinate(_head._x.coord / length);
-//        this._head._y = new Coordinate(_head._y.coord / length);
-//        this._head._z = new Coordinate(_head._z.coord / length);
         return this;
     }
 

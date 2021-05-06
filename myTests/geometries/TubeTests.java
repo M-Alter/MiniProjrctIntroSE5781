@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TubeTests {
     /**
      * Testing the normal of a tube
+     * {@link geometries.Tube#getNormal(Point3D)}
      */
     @Test
     public void normalTest() {
@@ -25,7 +26,7 @@ public class TubeTests {
             fail("normal dot-product direction should create a zero vector");
         }
         catch (IllegalArgumentException e){
-        }
+            /* no nothing */}
     }
 
 }
