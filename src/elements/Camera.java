@@ -30,7 +30,7 @@ public class Camera {
         this._vUp = vUp.normalized();
         this._vTo = vTo.normalized();
         // vRight vector is a normal
-        _vRight = vTo.crossProduct(vUp).normalized();
+        _vRight = _vTo.crossProduct(_vUp).normalized();
     }
 
     /**
@@ -125,9 +125,11 @@ public class Camera {
         double yI = -(i-(nY-1)/2)*rY;
         double xJ = (j-(nX-1)/2)*rX;
 
-        Vector vIJ = _vRight.scale(xJ).add(_vUp.scale(yI));
+        Point3D pIJ = pC.add(_vRight.scale(xJ).add(_vUp.scale(yI)));
+        Vector vIJ = pIJ.subtract(_p0);
+        //Vector vIJ = _vRight.scale(xJ).add(_vUp.scale(yI));
 
-        return new Ray(pC,vIJ);
+        return new Ray(_p0,vIJ);
 
     }
 }
