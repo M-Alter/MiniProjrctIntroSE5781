@@ -61,6 +61,12 @@ public class Plane implements Geometry {
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> result;
         // Parameters for calculation
+
+        //check if ray starts in the plane and prevent zero vector
+        if (_q0.equals(ray.getP0())){
+            return null;
+        }
+
         double numerator = _normal.dotProduct(_q0.subtract(ray.getP0()));
         double denominator = _normal.dotProduct(ray.getDir());
         // Return null when the normal is orthogonal to the ray
