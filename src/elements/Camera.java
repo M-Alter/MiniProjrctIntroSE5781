@@ -7,6 +7,10 @@ public class Camera {
     private Point3D _p0;
     private Vector _vUp;
     private Vector _vTo;
+    private Vector _vRight;
+    private double _width;
+    private double _height;
+    private double _distance;
 
     public Camera(Point3D p0, Vector vUp, Vector vTo) {
         if (vUp.dotProduct(vTo) != 0){
@@ -18,10 +22,6 @@ public class Camera {
         _vRight = vTo.crossProduct(vUp).normalized();
     }
 
-    private Vector _vRight;
-    private double _width;
-    private double _height;
-    private double _distance;
 
     public Camera setViewPlaneSize(double width, double height){
         _width = width;
