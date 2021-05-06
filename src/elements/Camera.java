@@ -19,7 +19,7 @@ public class Camera {
         this._p0 = p0;
         this._vUp = vUp.normalized();
         this._vTo = vTo.normalized();
-        _vRight = _vTo.crossProduct(_vUp).normalized();
+        _vRight = vTo.crossProduct(vUp).normalized();
     }
 
 
