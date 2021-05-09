@@ -2,7 +2,6 @@ package elements;
 
 import primitives.*;
 
-
 public class Camera {
     /**
      * Properties of a camera
