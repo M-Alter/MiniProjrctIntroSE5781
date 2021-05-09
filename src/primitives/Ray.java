@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 public class Ray {
 
     // variables
@@ -44,5 +46,23 @@ public class Ray {
     public String toString() {
         return  "p0 = " + _p0.toString() +
                 ", dir = " + _dir;
+    }
+
+
+    /**
+     * method to find the point closest to the ray's p0 in a list of points
+     * @param points list of points
+     * @return the point thats closest to the rays p0
+     */
+    public Point3D findClosestPoint(List<Point3D> points){
+        Point3D result = points.get(0);
+        double min = _p0.distance(points.get(0));
+        for (Point3D p : points) {
+            if (_p0.distance(p) < min){
+                min = _p0.distance(p);
+                result = p;
+            }
+        }
+        return result;
     }
 }
