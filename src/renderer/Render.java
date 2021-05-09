@@ -53,7 +53,7 @@ public class Render {
 
         for (int i = 0; i < _imageWriter.getNx(); i++){
             for (int j = 0; j < _imageWriter.getNy(); j++){
-                _rayTracer.traceRay(_camera.constructRay(_imageWriter.getNx(), _imageWriter.getNy(),j,i));
+                _imageWriter.writePixel(i,j,_rayTracer.traceRay(_camera.constructRay(_imageWriter.getNx(), _imageWriter.getNy(),j,i)));
             }
         }
     }
@@ -71,13 +71,13 @@ public class Render {
 
         for (int i = 0; i < _imageWriter.getNx(); i++){
             for (int j = 0; j < _imageWriter.getNy(); j += _imageWriter.getNy()/10){
-                _imageWriter.writePixel(i,j,new Color(255,255,255));
+                _imageWriter.writePixel(i,j, color);
             }
         }
 
-        for (int i = 0; i < _imageWriter.getNy(); i++){
-            for (int j = 0; j < _imageWriter.getNx(); j += _imageWriter.getNx()/10){
-                _imageWriter.writePixel(i,j,new Color(255,255,255));
+        for (int i = 0; i < _imageWriter.getNy(); i+= _imageWriter.getNx()/10){
+            for (int j = 0; j < _imageWriter.getNx(); j ++){
+                _imageWriter.writePixel(i,j,color);
             }
         }
 

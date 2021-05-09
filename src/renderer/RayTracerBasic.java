@@ -23,8 +23,8 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     private Color calcColor(Point3D point) {
-        //return _scene._ambient.getIntensity();
-        return _scene._background;
+        return _scene._ambientLight.getIntensity();
+
     }
 
 }
