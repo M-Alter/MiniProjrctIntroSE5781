@@ -110,7 +110,7 @@ public class Camera {
     }
 
     /**
-     * constructor that created the ray to pixel i*j
+     * construct that created the ray to pixel i*j
      * @param nX amount of the pixels from left to right
      * @param nY amount of the pixels from bottom to top
      * @param j current parameter from left to right
@@ -130,8 +130,6 @@ public class Camera {
         if (xJ != 0) pIJ = pIJ.add(_vRight.scale(xJ));
         if (yI != 0) pIJ = pIJ.add(_vUp.scale(yI));
         Vector vIJ = pIJ.subtract(_p0);
-
-
 
         return new Ray(_p0,vIJ);
 
