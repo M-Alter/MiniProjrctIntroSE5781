@@ -60,8 +60,8 @@ public class Sphere extends Geometry{
 
         // Parameters for calculations
         double tH = Math.sqrt(_radius*_radius - d*d);
-        double t1 = tM + tH;
-        double t2 = tM - tH;
+        double t2 = tM + tH;
+        double t1 = tM - tH;
         // Add the intersections points to the list
         if (t1 > 0 ) {
             // Init the list where there are intersections
@@ -74,6 +74,50 @@ public class Sphere extends Geometry{
                 result = new LinkedList<>();
             }
             result.add(ray.getPoint(t2));
+        }
+        return result;
+    }
+
+    /**
+     * A method to find the the intersections
+     *
+     * @param ray the ray that engage the geometry body
+     * @return list of the intersections
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> result = null;
+        // Parameters for calculation
+        Vector u;
+        //if ray.p0 == _centre prevent zero vector
+        try{
+            u = this._center.subtract(ray.getP0());
+        }catch (IllegalArgumentException e){
+            return List.of(new GeoPoint(this, ray.getPoint(this._radius)));
+        }
+        double tM = ray.getDir().dotProduct(u);
+        double d = Math.sqrt(u.lengthSquared() - tM*tM);
+        // Return null in case there are no intersections
+        if(d>_radius){
+            return null;
+        }
+
+        // Parameters for calculations
+        double tH = Math.sqrt(_radius*_radius - d*d);
+        double t2 = tM + tH;
+        double t1 = tM - tH;
+        // Add the intersections points to the list
+        if (t1 > 0 ) {
+            // Init the list where there are intersections
+            result = new LinkedList<>();
+            result.add(new GeoPoint(this, ray.getPoint(t1)));
+        }
+        if (t2 > 0 ){
+            if(result == null){
+                // Init the list where there are intersections
+                result = new LinkedList<>();
+            }
+            result.add(new GeoPoint(this, ray.getPoint(t2)));
         }
         return result;
     }

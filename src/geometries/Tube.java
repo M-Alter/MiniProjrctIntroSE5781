@@ -38,4 +38,15 @@ public class Tube extends Geometry{
     public List<Point3D> findIntersections(Ray ray) {
         return null;
     }
+
+    /**
+     * A method to find the the intersections
+     *
+     * @param ray the ray that engage the geometry body
+     * @return list of the intersections
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        return null;
+    }
 }
