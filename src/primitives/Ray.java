@@ -75,6 +75,7 @@ public class Ray {
      * @return the geoPoint that's closest to the rays p0
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> points){
+        if (points == null || points.isEmpty()) return null;
         GeoPoint result = points.get(0);
         double min = _p0.distance(points.get(0).point3D);
         for (GeoPoint p : points) {
