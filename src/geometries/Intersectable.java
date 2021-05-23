@@ -38,6 +38,7 @@ public interface Intersectable {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             GeoPoint geoPoint = (GeoPoint) o;
+            // equal between the two fields
             return this.geometry.equals(geoPoint.geometry)
                     && this.point3D.equals(geoPoint.point3D);
         }
