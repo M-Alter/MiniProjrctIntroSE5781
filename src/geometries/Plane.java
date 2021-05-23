@@ -9,31 +9,15 @@ import java.util.List;
 
 import static primitives.Util.*;
 
-/**
- * implements the geometric shape plane
- */
 public class Plane implements Geometry {
-    //any point on the plane
     Point3D _q0;
-    //normal to the plane
     Vector _normal;
 
-    /**
-     * c'tor of a plane
-     * @param q0 any point on the plane
-     * @param normal normal vector to the plane
-     */
     public Plane(Point3D q0, Vector normal) {
         this._q0 = q0;
         this._normal = normal;
     }
 
-    /**
-     * c'tor of a plane the gets three points on the plane
-     * @param vertex1 point1
-     * @param vertex2 point2
-     * @param vertex3 point3
-     */
     public Plane(Point3D vertex1, Point3D vertex2, Point3D vertex3) {
         this._q0 = vertex1;
         if (vertex1.equals(vertex2) || vertex1.equals(vertex3) || vertex2.equals(vertex3))
@@ -46,24 +30,19 @@ public class Plane implements Geometry {
         }
     }
 
-    /**
-     * get a point on the plane
-     * @return a point on the plane
-     */
+
     public Point3D getQ0() {
         return _q0;
     }
 
-    /**
-     * get a vector that is a normal to the plane and goes through pnt
-     * @param pnt point that the normal vector should pass through
-     * @return a vector that us normal to the plane and passes through pnt
-     */
+    public Vector getNormal() {
+        return _normal;
+    }
+
     @Override
     public Vector getNormal(Point3D pnt) {
         return _normal;
     }
-
 
     @Override
     public String toString() {
