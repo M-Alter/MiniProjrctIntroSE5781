@@ -9,21 +9,21 @@ import primitives.Color;
  */
 public class Scene {
     //name of the scene
-    public String _name;
+    public String name;
     //color of hte background
-    public Color _background = Color.BLACK;
+    public Color background = Color.BLACK;
     //ambient light of the scene
-    public AmbientLight _ambientLight = new AmbientLight(Color.BLACK, 0);
+    public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
     //geometric shapes in the scene
-    public Geometries _geometries;
+    public Geometries geometries;
 
     /**
      * c'tor of the scene
      * @param name name to call the scene
      */
     public Scene(String name) {
-        this._name = name;
-        _geometries = new Geometries();
+        this.name = name;
+        geometries = new Geometries();
     }
 
     /**
@@ -32,7 +32,7 @@ public class Scene {
      * @return this object (similar to the builder design pattern)
      */
     public Scene setBackground(Color _background) {
-        this._background = _background;
+        this.background = _background;
         return this;
     }
 
@@ -42,7 +42,7 @@ public class Scene {
      * @return this object (similar to the builder design pattern)
      */
     public Scene setAmbientLight(AmbientLight _ambientLight) {
-        this._ambientLight = _ambientLight;
+        this.ambientLight = _ambientLight;
         return this;
     }
 
@@ -52,7 +52,7 @@ public class Scene {
      * @return this object (similar to the builder design pattern)
      */
     public Scene setGeometries(Geometries _geometries) {
-        this._geometries = _geometries;
+        this.geometries = _geometries;
         return this;
     }
 

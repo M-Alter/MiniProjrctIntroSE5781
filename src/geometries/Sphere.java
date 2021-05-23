@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * class that represents a sphere
  */
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
     Point3D _center;
     double _radius;
 

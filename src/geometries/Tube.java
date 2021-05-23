@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * class that represents a infinite tue
  */
-public class Tube implements Geometry{
+public class Tube extends Geometry{
     Ray axisRay;
     double radius;
 
