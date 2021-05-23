@@ -9,7 +9,10 @@ import javax.imageio.ImageTranscoder;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Sphere extends Geometry{
+/**
+ * class that represents a sphere
+ */
+public class Sphere implements Geometry{
     Point3D _center;
     double _radius;
 

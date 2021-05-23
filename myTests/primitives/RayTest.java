@@ -11,10 +11,36 @@ class RayTest {
 
     /**
      * test to verify the closest point
+     * {@link primitives.Ray#findClosestPoint(List)}
      */
     @Test
     void findClosestPoint() {
+        //============================ EP tests =====================
+        //TC01
         List<Point3D> points = new LinkedList<Point3D>();
+        points.add(new Point3D(0, 0, 2));
+        points.add(new Point3D(0, 0, 3));
+        points.add(new Point3D(0, 0, 4));
+        points.add(new Point3D(0, 0, 1));
+        points.add(new Point3D(0, 0, 5));
+        points.add(new Point3D(0, 0, 6));
+        points.add(new Point3D(0, 0, 7));
+        points.add(new Point3D(0, 0, 8));
+
+        assertEquals(new Point3D(0, 0, 1),
+                new Ray(new Point3D(0, 0, 0),
+                        new Vector(0, 0, 1)).
+                        findClosestPoint(points),"(0,0,0) is the closest point");
+
+        //============================ BV tests =====================
+        //TC02
+        points= new LinkedList<>();
+        assertNull(new Ray(new Point3D(0, 0, 0),
+                new Vector(0, 0, 1)).
+                findClosestPoint(points),"points is an empty list");
+
+        //TC03
+        points = new LinkedList<Point3D>();
         points.add(new Point3D(0, 0, 1));
         points.add(new Point3D(0, 0, 2));
         points.add(new Point3D(0, 0, 3));
@@ -23,9 +49,26 @@ class RayTest {
         points.add(new Point3D(0, 0, 6));
         points.add(new Point3D(0, 0, 7));
         points.add(new Point3D(0, 0, 8));
+
         assertEquals(new Point3D(0, 0, 1),
                 new Ray(new Point3D(0, 0, 0),
                         new Vector(0, 0, 1)).
-                        findClosestPoint(points));
+                        findClosestPoint(points),"(0,0,0) is the closest point");
+
+        //TC03
+        points = new LinkedList<Point3D>();
+        points.add(new Point3D(0, 0, 2));
+        points.add(new Point3D(0, 0, 3));
+        points.add(new Point3D(0, 0, 4));
+        points.add(new Point3D(0, 0, 5));
+        points.add(new Point3D(0, 0, 6));
+        points.add(new Point3D(0, 0, 7));
+        points.add(new Point3D(0, 0, 8));
+        points.add(new Point3D(0, 0, 1));
+
+        assertEquals(new Point3D(0, 0, 1),
+                new Ray(new Point3D(0, 0, 0),
+                        new Vector(0, 0, 1)).
+                        findClosestPoint(points),"(0,0,0) is the closest point");
     }
 }

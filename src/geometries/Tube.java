@@ -6,7 +6,10 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Tube extends Geometry{
+/**
+ * class that represents a infinite tue
+ */
+public class Tube implements Geometry{
     Ray axisRay;
     double radius;
 

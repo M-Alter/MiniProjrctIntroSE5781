@@ -4,49 +4,57 @@ import elements.AmbientLight;
 import geometries.Geometries;
 import primitives.Color;
 
+/**
+ * class that represents a scene that contains a camera, lights and geometric shapes
+ */
 public class Scene {
-    public String name;
-    public Color background = Color.BLACK;
-    public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
-    public Geometries geometries;
+    //name of the scene
+    public String _name;
+    //color of hte background
+    public Color _background = Color.BLACK;
+    //ambient light of the scene
+    public AmbientLight _ambientLight = new AmbientLight(Color.BLACK, 0);
+    //geometric shapes in the scene
+    public Geometries _geometries;
 
+    /**
+     * c'tor of the scene
+     * @param name name to call the scene
+     */
     public Scene(String name) {
-        this.name = name;
-        geometries = new Geometries();
+        this._name = name;
+        _geometries = new Geometries();
     }
 
-
+    /**
+     * set the color of hte background
+     * @param _background color to set the background to
+     * @return this object (similar to the builder design pattern)
+     */
     public Scene setBackground(Color _background) {
-        this.background = _background;
+        this._background = _background;
         return this;
     }
 
+    /**
+     * set the ambient light of the scene
+     * @param _ambientLight the ambient light ot set the scene
+     * @return this object (similar to the builder design pattern)
+     */
     public Scene setAmbientLight(AmbientLight _ambientLight) {
-        this.ambientLight = _ambientLight;
+        this._ambientLight = _ambientLight;
         return this;
     }
 
+    /**
+     * set the geometries in the scene
+     * @param _geometries geometries in the scene
+     * @return this object (similar to the builder design pattern)
+     */
     public Scene setGeometries(Geometries _geometries) {
-        this.geometries = _geometries;
+        this._geometries = _geometries;
         return this;
     }
 
-    //    public static class Builder { // in the next slide
-//            private Scene scene = null;
-//            public Builder(String name) { scene = new Scene(name); }
-//            public void reset(String name) { scene = new Scene(name); }
-//            public Builder setBackground(Color color) { scene._background = color; return this; }
-//            public Builder setAmbient(Color color, double ka) {
-//                scene._ambient = new AmbientLight(color, ka); return this;
-//            }
-//            public Builder addGeometry(Intersectable geo) {
-//                if (scene._geometries == null) scene._geometries = new Geometries();
-//                scene._geometries.add(geo);
-//                return this;
-//            }
-//            public Scene build() {
-//                if (scene._name == null || scene._geometries == null) throw new SomeException();
-//                return scene;
-//            }
-//        }
+
 }

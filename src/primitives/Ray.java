@@ -57,6 +57,7 @@ public class Ray {
      * @return the point that's closest to the rays p0
      */
     public Point3D findClosestPoint(List<Point3D> points){
+        if (points == null || points.isEmpty()) return null;
         Point3D result = points.get(0);
         double min = _p0.distance(points.get(0));
         for (Point3D p : points) {

@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import elements.*;
 import geometries.*;
+
+import org.xml.sax.SAXException;
 import primitives.*;
-import renderer.*;
 import scene.Scene;
+
 
 /**
  * Test rendering a basic image
@@ -60,6 +62,7 @@ public class RenderTests {
         Scene scene = new Scene("XML Test scene");
         // enter XML file name and parse from XML file into scene object
         // ...
+
 
         ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
         Render render = new Render() //
