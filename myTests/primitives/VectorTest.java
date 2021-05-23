@@ -2,15 +2,14 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
-import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
 /**
  * Unit test for primitives.Vector class
  * @author
- * @Student Menachem Alter 339832131 alter.menachem@gmail.com
- * @Student Inon Bezalel 204231146 inonbezalel@gmail.com
+ *  Menachem Alter 339832131 alter.menachem@gmail.com
+ *  Inon Bezalel 204231146 inonbezalel@gmail.com
  */
 class VectorTest {
 
@@ -24,7 +23,7 @@ class VectorTest {
         try { // test zero vector
             v1.crossProduct(v2);
             fail("ERROR: crossProduct() for parallel vectors does not throw an exception");
-        } catch (Exception e) {}
+        } catch (Exception e) {/* do nothing */}
         Vector vr = v1.crossProduct(v3);
         if (!isZero(vr.length() - v1.length() * v3.length()))
             fail("ERROR: crossProduct() wrong result length");
@@ -37,7 +36,7 @@ class VectorTest {
     @Test
     public void testAdd() {
         //========================= Equivalence Partition Tests ===========================
-        assertTrue(_vector.add(new Vector(1, 1, 1)).equals(new Vector(2, 3, 4)));
+        assertEquals(new Vector(2, 3, 4), _vector.add(new Vector(1, 1, 1)));
         //========================= Boundary Values Tests ===========================
 
     }

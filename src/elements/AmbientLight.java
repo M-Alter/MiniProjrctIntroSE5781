@@ -21,11 +21,20 @@ public class AmbientLight {
         _intensity.scale(ka);
     }
 
+    /**
+     * c'tor for the ambient light with a default of black
+     */
     public AmbientLight() {
+
         _intensity = Color.BLACK;
     }
 
+    /**
+     * get the intensity of the color
+     * @return the intensity
+     */
     public Color getIntensity() {
+
         return _intensity;
     }
 }

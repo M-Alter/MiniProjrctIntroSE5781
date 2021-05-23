@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * class that represents a triangle
+ */
 public class Triangle extends Polygon{
 
     // constructor

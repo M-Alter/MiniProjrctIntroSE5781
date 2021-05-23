@@ -2,7 +2,6 @@ package renderer;
 
 import elements.Camera;
 import primitives.Color;
-import scene.Scene;
 
 import java.util.MissingResourceException;
 
@@ -14,7 +13,7 @@ public class Render {
 
     /**
      * setter for camera
-     * @param _camera
+     * @param _camera camera to set
      * @return this object (similar to builder)
      */
     public Render setCamera(Camera _camera) {
@@ -24,7 +23,7 @@ public class Render {
 
     /**
      * setter for imageWriter
-     * @param _imageWriter
+     * @param _imageWriter the image writer to use
      * @return this object (similar to builder)
      */
     public Render setImageWriter(ImageWriter _imageWriter) {
@@ -34,7 +33,7 @@ public class Render {
 
     /**
      * setter for rayTracer
-     * @param _rayTracer
+     * @param _rayTracer ray tracer to use
      * @return this object (similar to builder)
      */
     public Render setRayTracer(RayTracerBase _rayTracer) {
