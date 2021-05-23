@@ -5,29 +5,29 @@ import geometries.Geometries;
 import primitives.Color;
 
 public class Scene {
-    public String _name;
-    public Color _background = Color.BLACK;
-    public AmbientLight _ambientLight = new AmbientLight(Color.BLACK, 0);
-    public Geometries _geometries;
+    public String name;
+    public Color background = Color.BLACK;
+    public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
+    public Geometries geometries;
 
     public Scene(String name) {
-        this._name = name;
-        _geometries = new Geometries();
+        this.name = name;
+        geometries = new Geometries();
     }
 
 
     public Scene setBackground(Color _background) {
-        this._background = _background;
+        this.background = _background;
         return this;
     }
 
     public Scene setAmbientLight(AmbientLight _ambientLight) {
-        this._ambientLight = _ambientLight;
+        this.ambientLight = _ambientLight;
         return this;
     }
 
     public Scene setGeometries(Geometries _geometries) {
-        this._geometries = _geometries;
+        this.geometries = _geometries;
         return this;
     }
 

@@ -13,7 +13,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -119,6 +119,49 @@ public class Polygon implements Geometry {
 
         if (vN.stream().allMatch(x -> x > 0) || vN.stream().allMatch(x -> x < 0)) {
             result = planeIntersections;
+        }
+        return result;
+    }
+
+    /**
+     * A method to find the the intersections
+     * @param ray the ray that engage the geometry body
+     * @return list of the intersections
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
+        // Return null if the ray is not in the plane of the triangle
+        if (planeIntersections == null) {
+            return null;
+        }
+        List<GeoPoint> result = null;
+        // Parameters for calculation
+        List<Vector> v = new ArrayList<>();
+        for (int i = 1; i <= vertices.size(); i++) {
+            v.add(i-1, vertices.get(i-1).subtract(ray.getP0()));
+        }
+
+        List<Vector> n = new ArrayList<>();
+        n.add(0, v.get(0).crossProduct(v.get(1)).normalized());
+        n.add(1, v.get(1).crossProduct(v.get(2)).normalized());
+
+        for (int i = 2; i < vertices.size(); i++) {
+            n.add(i, v.get(i).crossProduct(v.get(0)).normalized());
+        }
+
+        ArrayList<Double> vN = new ArrayList<>();
+
+        for (int i = 0; i < vertices.size(); i++) {
+            vN.add(i, ray.getDir().dotProduct(n.get(i)));
+        }
+
+        if (vN.stream().allMatch(x -> x > 0) || vN.stream().allMatch(x -> x < 0)) {
+            result = planeIntersections;
+            // Implement the geometry field to be this
+            for (GeoPoint geoPoint: result) {
+                geoPoint.geometry = this;
+            }
         }
         return result;
     }

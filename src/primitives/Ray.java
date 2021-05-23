@@ -1,6 +1,8 @@
 package primitives;
 
+import java.time.Period;
 import java.util.List;
+import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 
@@ -52,7 +54,7 @@ public class Ray {
     /**
      * method to find the point closest to the ray's p0 in a list of points
      * @param points list of points
-     * @return the point thats closest to the rays p0
+     * @return the point that's closest to the rays p0
      */
     public Point3D findClosestPoint(List<Point3D> points){
         Point3D result = points.get(0);
@@ -60,6 +62,23 @@ public class Ray {
         for (Point3D p : points) {
             if (_p0.distance(p) < min){
                 min = _p0.distance(p);
+                result = p;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * method to find the geoPoint closest to the ray's p0 in a list of points
+     * @param points list of geoPoints
+     * @return the geoPoint that's closest to the rays p0
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> points){
+        GeoPoint result = points.get(0);
+        double min = _p0.distance(points.get(0).point3D);
+        for (GeoPoint p : points) {
+            if (_p0.distance(p.point3D) < min){
+                min = _p0.distance(p.point3D);
                 result = p;
             }
         }

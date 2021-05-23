@@ -23,9 +23,9 @@ public class RayTracerBasic extends RayTracerBase{
      */
     @Override
     public Color traceRay(Ray ray) {
-       List<Point3D> points = _scene._geometries.findIntersections(ray);
+       List<Point3D> points = _scene.geometries.findIntersections(ray);
        if (points == null){
-           return _scene._background;
+           return _scene.background;
        }
        Point3D p = ray.findClosestPoint(points);
         return calcColor(p);
@@ -37,7 +37,7 @@ public class RayTracerBasic extends RayTracerBase{
      * @return the intensity of the color
      */
     private Color calcColor(Point3D point) {
-        return _scene._ambientLight.getIntensity();
+        return _scene.ambientLight.getIntensity();
 
     }
 
