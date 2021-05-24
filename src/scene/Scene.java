@@ -1,8 +1,12 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * class that represents a scene that contains a camera, lights and geometric shapes
@@ -16,6 +20,14 @@ public class Scene {
     public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
     //geometric shapes in the scene
     public Geometries geometries;
+
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
+    }
+
+    // list of lights of the scene
+    public List<LightSource> lights = new LinkedList<LightSource>();
 
     /**
      * c'tor of the scene
