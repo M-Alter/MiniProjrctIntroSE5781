@@ -30,6 +30,11 @@ public class DirectionalLight extends Light implements LightSource{
         return super.getIntensity();
     }
 
+    /**
+     * override of the getL
+     * @param p point
+     * @return the direction
+     */
     @Override
     public Vector getL(Point3D p) {
         return _direction;

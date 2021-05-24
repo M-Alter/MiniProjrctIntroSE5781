@@ -9,15 +9,35 @@ import java.util.List;
 
 import static primitives.Util.*;
 
+/**
+ * class plane to represent a plane in the span
+ */
 public class Plane extends Geometry {
+    /**
+     * a point to starting the plane
+     */
     Point3D _q0;
+    /**
+     * a normal vector to span the plane
+     */
     Vector _normal;
 
+    /**
+     * constructor of plane
+     * @param q0 a point of the plane
+     * @param normal a normal that span the plane
+     */
     public Plane(Point3D q0, Vector normal) {
-        this._q0 = q0;
-        this._normal = normal;
+        _q0 = q0;
+        _normal = normal;
     }
 
+    /**
+     * constructor to span a plane by 3 points
+     * @param vertex1 a point
+     * @param vertex2 a point
+     * @param vertex3 a point
+     */
     public Plane(Point3D vertex1, Point3D vertex2, Point3D vertex3) {
         this._q0 = vertex1;
         if (vertex1.equals(vertex2) || vertex1.equals(vertex3) || vertex2.equals(vertex3))
@@ -30,20 +50,36 @@ public class Plane extends Geometry {
         }
     }
 
-
+    /**
+     * getter of the point
+     * @return the point
+     */
     public Point3D getQ0() {
         return _q0;
     }
 
+    /**
+     * getter of the normal
+     * @return the normal
+     */
     public Vector getNormal() {
         return _normal;
     }
 
+    /**
+     * override method of getNormal
+     * @param pnt point to calculation
+     * @return the normal of the plane
+     */
     @Override
     public Vector getNormal(Point3D pnt) {
         return _normal;
     }
 
+    /**
+     * override the toString
+     * @return a string of the plane
+     */
     @Override
     public String toString() {
         return "Plane{" +

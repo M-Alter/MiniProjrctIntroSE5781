@@ -2,6 +2,9 @@ package elements;
 
 import primitives.*;
 
+/**
+ * class to represent camera's view of the scene
+ */
 public class Camera {
     /**
      * Properties of a camera

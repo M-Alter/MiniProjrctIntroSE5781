@@ -4,6 +4,9 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * class to represent spot light
+ */
 public class SpotLight extends PointLight{
     private final Vector _direction;
 

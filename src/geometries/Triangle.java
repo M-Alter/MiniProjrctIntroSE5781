@@ -11,7 +11,12 @@ import java.util.List;
  */
 public class Triangle extends Polygon{
 
-    // constructor
+    /**
+     * constructor of triangle
+     * @param x x point
+     * @param y y point
+     * @param z z point
+     */
     public Triangle(Point3D x,Point3D y,Point3D z) {
         super(x,y,z);
     }
@@ -50,7 +55,11 @@ public class Triangle extends Polygon{
 //        return result;
 //    }
 
-    // override function
+    /**
+     * override getNormal
+     * @param point
+     * @return the normal
+     */
     @Override
     public Vector getNormal(Point3D point) {
         return super.getNormal(point);

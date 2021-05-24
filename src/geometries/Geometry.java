@@ -2,15 +2,35 @@ package geometries;
 
 import primitives.*;
 
+/**
+ * abstract class to represent geometry body
+ */
 public abstract class Geometry implements Intersectable {
+    /**
+     * emission field
+     */
     protected Color _emission = Color.BLACK;
+    /**
+     * material field
+     */
+    private Material _material;
 
+    /**
+     * abstract method getNormal
+     * @param pnt point to calculation
+     * @return
+     */
+    public abstract Vector getNormal(Point3D pnt);
+
+    /**
+     * setter of material
+     * @param material
+     * @return this
+     */
     public Geometry setMaterial(Material material) {
         _material = material;
         return this;
     }
-
-    private Material _material;
 
     /**
      * getter of material
@@ -19,8 +39,6 @@ public abstract class Geometry implements Intersectable {
     public Material getMaterial() {
         return _material;
     }
-
-    public abstract Vector getNormal(Point3D pnt);
 
     /**
      * Getter of _emission
