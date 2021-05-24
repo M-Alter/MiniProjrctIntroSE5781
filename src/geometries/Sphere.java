@@ -38,48 +38,48 @@ public class Sphere extends Geometry{
        return pnt.subtract(_center).normalized();
     }
 
-    /**
-     * Find the intersections between a ray to a sphere
-     * @param ray ray the runs through the geometry
-     * @return A list of the intersections
-     */
-    @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result = null;
-        // Parameters for calculation
-        Vector u;
-        //if ray.p0 == _centre prevent zero vector
-        try{
-            u = this._center.subtract(ray.getP0());
-        }catch (IllegalArgumentException e){
-            return List.of(ray.getPoint(this._radius));
-        }
-        double tM = ray.getDir().dotProduct(u);
-        double d = Math.sqrt(u.lengthSquared() - tM*tM);
-        // Return null in case there are no intersections
-        if(d>_radius){
-            return null;
-        }
-
-        // Parameters for calculations
-        double tH = Math.sqrt(_radius*_radius - d*d);
-        double t2 = tM + tH;
-        double t1 = tM - tH;
-        // Add the intersections points to the list
-        if (t1 > 0 ) {
-            // Init the list where there are intersections
-            result = new LinkedList<>();
-            result.add(ray.getPoint(t1));
-        }
-        if (t2 > 0 ){
-            if(result == null){
-                // Init the list where there are intersections
-                result = new LinkedList<>();
-            }
-            result.add(ray.getPoint(t2));
-        }
-        return result;
-    }
+//    /**
+//     * Find the intersections between a ray to a sphere
+//     * @param ray ray the runs through the geometry
+//     * @return A list of the intersections
+//     */
+//    @Override
+//    public List<Point3D> findIntersections(Ray ray) {
+//        List<Point3D> result = null;
+//        // Parameters for calculation
+//        Vector u;
+//        //if ray.p0 == _centre prevent zero vector
+//        try{
+//            u = this._center.subtract(ray.getP0());
+//        }catch (IllegalArgumentException e){
+//            return List.of(ray.getPoint(this._radius));
+//        }
+//        double tM = ray.getDir().dotProduct(u);
+//        double d = Math.sqrt(u.lengthSquared() - tM*tM);
+//        // Return null in case there are no intersections
+//        if(d>_radius){
+//            return null;
+//        }
+//
+//        // Parameters for calculations
+//        double tH = Math.sqrt(_radius*_radius - d*d);
+//        double t2 = tM + tH;
+//        double t1 = tM - tH;
+//        // Add the intersections points to the list
+//        if (t1 > 0 ) {
+//            // Init the list where there are intersections
+//            result = new LinkedList<>();
+//            result.add(ray.getPoint(t1));
+//        }
+//        if (t2 > 0 ){
+//            if(result == null){
+//                // Init the list where there are intersections
+//                result = new LinkedList<>();
+//            }
+//            result.add(ray.getPoint(t2));
+//        }
+//        return result;
+//    }
 
     /**
      * A method to find the the intersections

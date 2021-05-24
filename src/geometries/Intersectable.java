@@ -5,6 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A list of points that the ray meets the geometric bodies
@@ -51,7 +52,11 @@ public interface Intersectable {
      * @param ray the ray that engage the geometry body
      * @return a list of the intersections
      */
-    List<Point3D> findIntersections(Ray ray);
+    default List<Point3D> findIntersections(Ray ray){
+        var geoList = findGeoIntersections(ray);
+        return geoList == null? null
+                : geoList.stream().map(gp->gp.point3D).collect(Collectors.toList());
+    }
 
     /**
      * A method to find the the intersections

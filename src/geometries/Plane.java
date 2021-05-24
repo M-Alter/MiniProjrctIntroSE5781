@@ -52,38 +52,38 @@ public class Plane extends Geometry {
                 '}';
     }
 
-    /**
-     * Find the intersection between a ray to a plane
-     * @param ray
-     * @return List with the intersection
-     */
-    @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result;
-        // Parameters for calculation
-
-        //check if ray starts in the plane and prevent zero vector
-        if (_q0.equals(ray.getP0())){
-            return null;
-        }
-
-        double numerator = _normal.dotProduct(_q0.subtract(ray.getP0()));
-        double denominator = _normal.dotProduct(ray.getDir());
-        // Return null when the normal is orthogonal to the ray
-        if (isZero(denominator)) {
-            return null;
-        }
-        // Return null when t is the opposite direction of the ray
-        double t = alignZero(numerator / denominator);
-        if (t <= 0) {
-            return null;
-        }
-        // Add the intersection to the list and return the list
-        result = new LinkedList<Point3D>();
-        result.add(ray.getPoint(t));
-
-        return result;
-    }
+//    /**
+//     * Find the intersection between a ray to a plane
+//     * @param ray
+//     * @return List with the intersection
+//     */
+//    @Override
+//    public List<Point3D> findIntersections(Ray ray) {
+//        List<Point3D> result;
+//        // Parameters for calculation
+//
+//        //check if ray starts in the plane and prevent zero vector
+//        if (_q0.equals(ray.getP0())){
+//            return null;
+//        }
+//
+//        double numerator = _normal.dotProduct(_q0.subtract(ray.getP0()));
+//        double denominator = _normal.dotProduct(ray.getDir());
+//        // Return null when the normal is orthogonal to the ray
+//        if (isZero(denominator)) {
+//            return null;
+//        }
+//        // Return null when t is the opposite direction of the ray
+//        double t = alignZero(numerator / denominator);
+//        if (t <= 0) {
+//            return null;
+//        }
+//        // Add the intersection to the list and return the list
+//        result = new LinkedList<Point3D>();
+//        result.add(ray.getPoint(t));
+//
+//        return result;
+//    }
 
     /**
      * A method to find the the intersections
