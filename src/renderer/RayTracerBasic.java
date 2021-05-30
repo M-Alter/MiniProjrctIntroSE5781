@@ -21,6 +21,14 @@ public class RayTracerBasic extends RayTracerBase{
      * constant double DELTA = 0.1
      */
     public static final double DELTA = 0.1;
+    /**
+     * constant of maximum calculation of color level
+     */
+    public static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * constant of maximum calculation of
+     */
+    public static final double MAX_CALC_COLOR_K = 0.001;
     public RayTracerBasic(Scene _scene) {
         super(_scene);
     }
