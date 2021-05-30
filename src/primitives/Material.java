@@ -9,7 +9,7 @@ public class Material {
 
     /**
      * setter of parameter kD
-     * @param kD
+     * @param kD diffusion of the light
      * @return this
      */
     public Material setkD(double kD) {

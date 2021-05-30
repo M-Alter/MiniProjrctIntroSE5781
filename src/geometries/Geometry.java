@@ -13,7 +13,7 @@ public abstract class Geometry implements Intersectable {
     /**
      * material field
      */
-    private Material _material;
+    private Material _material = new Material();
 
     /**
      * abstract method getNormal
