@@ -72,8 +72,8 @@ public class Project1 {
     @Test
     public void room(){
         Scene scene = new Scene("Room");
-        //scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-        scene.background = new Color(java.awt.Color.GRAY);
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+        scene.background = new Color(java.awt.Color.darkGray);
 
         scene.lights.add( //
                 new SpotLight(new Color(700, 400, 400), new Point3D(40, 40, 115), new Vector(-1, -1, -4)) //
