@@ -27,6 +27,11 @@ public class TubeTests {
         }
         catch (IllegalArgumentException e){
             /* no nothing */}
+
+        Vector v1 = new Vector(0,1,1).normalize();
+        Tube tube2 = new Tube( new Ray(new Point3D(2,2,-1), v1),5);
+        Point3D point = new Point3D(7,3,0);
+        assertEquals(tube2.getNormal(point),(new Vector(1,0,0)));
     }
 
 }
