@@ -93,7 +93,14 @@ public class RayTracerBasic extends RayTracerBase{
                     calcGlobalEffect(constructRefractedRay(gp.point3D, v, n), level, material.kT, kkt));
         return color;
     }
-    //TODO
+
+    /**
+     *
+     * @param point3D
+     * @param v
+     * @param n
+     * @return
+     */
     private Ray constructRefractedRay(Point3D point3D, Vector v, Vector n) {
         return new Ray(point3D, v,n);
     }
