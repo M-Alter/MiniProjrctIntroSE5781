@@ -9,11 +9,23 @@ public class Ray {
     // variables
     final Point3D _p0;
     final Vector _dir;
-
+    /**
+     * constant double DELTA = 0.1
+     */
+    public static final double DELTA = 0.1;
     // constructor
     public Ray(Point3D pnt, Vector vec){
         _p0 = new Point3D(pnt._x, pnt._y, pnt._z);
         _dir = vec.normalized();
+    }
+
+    public Ray(Point3D head, Vector dir, Vector normal){
+        double nv = normal.dotProduct(dir.normalized());
+        if (nv > 0)
+            _p0 = head.add(normal.scale(DELTA));
+        else
+            _p0 = head.add(normal.scale(DELTA * -1));
+        _dir = dir.normalized();
     }
 
     // getters

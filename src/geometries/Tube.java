@@ -25,7 +25,7 @@ public class Tube extends Geometry{
 
     /**
      * The normal of the tube to the point
-     * @param pnt
+     * @param pnt point to calculate the normal
      * @return The normal of the tube to the point
      */
     @Override
