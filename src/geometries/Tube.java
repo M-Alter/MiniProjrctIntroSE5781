@@ -61,15 +61,15 @@ public class Tube extends Geometry {
         Vector v = ray.getDir(),
                 vA = this._axisRay.getDir(),
                 deltaP = new Vector(p.subtract(_point).getHead()),
-                temp_for_use1, temp_for_use2;
+                tempForUse1, temp_for_use2;
 
         double V_dot_Va = v.dotProduct(vA),
                 DeltaP_dot_Va = deltaP.dotProduct(vA);
 
-        temp_for_use1 = v.subtract(vA.scale(V_dot_Va));
+        tempForUse1 = v.subtract(vA.scale(V_dot_Va));
         temp_for_use2 = deltaP.subtract(vA.scale(DeltaP_dot_Va));
 
-        double A = temp_for_use1.dotProduct(temp_for_use1);
+        double A = tempForUse1.dotProduct(tempForUse1);
         double B = 2 * v.subtract(vA.scale(V_dot_Va)).dotProduct(deltaP.subtract(vA.scale(DeltaP_dot_Va)));
         double C = temp_for_use2.dotProduct(temp_for_use2) - _radius * _radius;
         double desc = alignZero(B * B - 4 * A * C);
