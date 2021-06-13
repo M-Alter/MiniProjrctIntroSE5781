@@ -1,6 +1,7 @@
 package geometries;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import primitives.*;
@@ -86,7 +87,7 @@ public class Polygon extends Geometry {
 
     @Override
     public Vector getNormal(Point3D point) {
-        return plane.getNormal(null);
+        return plane.getNormal();
     }
 
 //    @Override
@@ -130,39 +131,77 @@ public class Polygon extends Geometry {
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
-        // Return null if the ray is not in the plane of the triangle
-        if (planeIntersections == null) {
+        List<GeoPoint> palaneIntersections = plane.findGeoIntersections(ray);
+        if (palaneIntersections == null)
             return null;
+
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Vector v1 = vertices.get(1).subtract(p0);
+        Vector v2 = vertices.get(0).subtract(p0);
+        double sign=0;
+        try{
+            sign = v.dotProduct(v1.crossProduct(v2));}
+        catch (IllegalArgumentException e)
+        {
+            System.out.println(this.vertices);
         }
-        List<GeoPoint> result = null;
-        // Parameters for calculation
-        List<Vector> v = new ArrayList<>();
-        for (int i = 1; i <= vertices.size(); i++) {
-            v.add(i-1, vertices.get(i-1).subtract(ray.getP0()));
+        if (isZero(sign))
+            return null;
+
+        boolean positive = sign > 0;
+
+        for (int i = vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = vertices.get(i).subtract(p0);
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) return null;
+            if (positive != (sign > 0)) return null;
         }
 
-        List<Vector> n = new ArrayList<>();
-        n.add(0, v.get(0).crossProduct(v.get(1)).normalized());
-        n.add(1, v.get(1).crossProduct(v.get(2)).normalized());
-
-        for (int i = 2; i < vertices.size(); i++) {
-            n.add(i, v.get(i).crossProduct(v.get(0)).normalized());
-        }
-
-        ArrayList<Double> vN = new ArrayList<>();
-
-        for (int i = 0; i < vertices.size(); i++) {
-            vN.add(i, ray.getDir().dotProduct(n.get(i)));
-        }
-
-        if (vN.stream().allMatch(x -> x > 0) || vN.stream().allMatch(x -> x < 0)) {
-            result = planeIntersections;
-            // Implement the geometry field to be this
-            for (GeoPoint geoPoint: result) {
-                geoPoint.geometry = this;
-            }
+        //for GeoPoint
+        List<GeoPoint> result = new LinkedList<>();
+        for (GeoPoint geo : palaneIntersections) {
+            result.add(new GeoPoint(this, geo.point3D));
         }
         return result;
+
+//        List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
+//        // Return null if the ray is not in the plane of the triangle
+//        if (planeIntersections == null) {
+//            return null;
+//        }
+//        List<GeoPoint> result = null;
+//        // Parameters for calculation
+//        List<Vector> v = new ArrayList<>();
+//        for (int i = 1; i <= vertices.size(); i++) {
+//            v.add(i-1, vertices.get(i-1).subtract(ray.getP0()));
+//        }
+//
+//        List<Vector> n = new ArrayList<>();
+//        n.add(0, v.get(0).crossProduct(v.get(1)).normalized());
+//        n.add(1, v.get(1).crossProduct(v.get(2)).normalized());
+//
+//        for (int i = 2; i < vertices.size(); i++) {
+//            n.add(i, v.get(i).crossProduct(v.get(0)).normalized());
+//        }
+//
+//        ArrayList<Double> vN = new ArrayList<>();
+//
+//
+
+//        for (int i = 0; i < vertices.size(); i++) {
+//            vN.add(i, ray.getDir().dotProduct(n.get(i)));
+//        }
+//
+//        if (vN.stream().allMatch(x -> x > 0) || vN.stream().allMatch(x -> x < 0)) {
+//            result = planeIntersections;
+//            // Implement the geometry field to be this
+//            for (GeoPoint geoPoint: result) {
+//                geoPoint.geometry = this;
+//            }
+//        }
+//        return result;
     }
 }
