@@ -20,6 +20,31 @@ public class Scene {
     public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
     //geometric shapes in the scene
     public Geometries geometries;
+    //focal length of the scene
+    public double focalLength;
+    //aperture of the camera
+    public double aperture = 1d;
+
+
+    /**
+     * set the depth of focus
+     * @param focalLength the depth of focus
+     * @return the current object so we use builder-like design pattern
+     */
+    public Scene setFocalLength(double focalLength) {
+        this.focalLength = focalLength;
+        return this;
+    }
+
+    /**
+     * set the aperture
+     * @param aperture the aperture of the camera eye
+     * @return the current object so we use builder-like design pattern
+     */
+    public Scene setAperture(double aperture) {
+        this.aperture = aperture;
+        return this;
+    }
 
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;
