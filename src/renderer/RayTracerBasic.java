@@ -71,7 +71,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param k        transparency level
      * @return the color of the point
      */
-    private Color calcColor(GeoPoint geoPoint, Ray ray, int level, double k) {
+    protected Color calcColor(GeoPoint geoPoint, Ray ray, int level, double k) {
         Color color = geoPoint.geometry.getEmission();
         color = color.add(calcLocalEffects(geoPoint, ray, k));
         return 1 == level ? color : color.add(calcGlobalEffects(geoPoint, ray.getDir(), level, k));
