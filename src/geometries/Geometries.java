@@ -14,40 +14,30 @@ public class Geometries implements Intersectable {
       */
     private List<Intersectable> _geometries;
 
+    /**
+     * constructor of geometry
+     */
     public Geometries() {
         _geometries = new LinkedList<Intersectable>();
     }
 
+    /**
+     *  constructor of geometry
+     * @param geometries list of intersectable geometries bodies
+     */
     public Geometries(Intersectable... geometries) {
         _geometries = new LinkedList<Intersectable>();
 
         _geometries.addAll(Arrays.asList(geometries));
     }
 
+    /**
+     *
+     * @param geometries
+     */
     public void add(Intersectable... geometries){
         _geometries.addAll(Arrays.asList(geometries));
     }
-
-//    /**
-//     * Find the intersection between a ray to a geometry
-//     * @param ray
-//     * @return A list of all intersections of the ray with all geometries
-//     */
-//    @Override
-//    public List<Point3D> findIntersections(Ray ray) {
-//        List<Point3D> result = null;
-//        List<Point3D> temp;
-//        for (Intersectable item: _geometries) {
-//            temp = item.findIntersections(ray);
-//            if (temp != null){
-//                if (result == null){
-//                    result = new LinkedList<Point3D>();
-//                }
-//                result.addAll(temp);
-//            }
-//        }
-//        return result;
-//    }
 
     /**
      * A method to find the the intersections

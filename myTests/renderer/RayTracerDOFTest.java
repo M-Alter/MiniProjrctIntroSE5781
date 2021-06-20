@@ -15,6 +15,8 @@ import primitives.Point3D;
 import primitives.Vector;
 import scene.Scene;
 
+import javax.management.remote.rmi.RMIConnectionImpl_Stub;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RayTracerDOFTest {
@@ -410,10 +412,20 @@ class RayTracerDOFTest {
                 new SpotLight(new Color(1000, 600, 0), new Point3D(-100, -100, 500), new Vector(-1, -1, -2)) //
                         .setkL(0.0004).setkQ(0.0000006));
 
-        Render render = new Render() //
-                .setImageWriter(new ImageWriter("refractionTwoSpheresDOF", 500, 500)) //
-                .setCamera(camera) //
-                .setRayTracer(new RayTracerDOF(scene));
+//        Render render = new Render() //
+//                .setImageWriter(new ImageWriter("refractionTwoSpheresDOF", 500, 500)) //
+//                .setCamera(camera) //
+//                .setRayTracer(new RayTracerDOF(scene));
+//        render.renderImage();
+//        render.writeToImage();
+
+        Render render = new Render()
+                .setCamera(camera)
+                .setImageWriter(new ImageWriter("refractionTwoSpheresDOF", 500, 500))
+                .setRayTracer(new RayTracerDOF(scene))
+                .setMultithreading(3)
+                .setDebugPrint();
+
         render.renderImage();
         render.writeToImage();
     }
