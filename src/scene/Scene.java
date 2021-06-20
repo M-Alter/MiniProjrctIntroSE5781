@@ -24,10 +24,22 @@ public class Scene {
     public double focalLength;
     //aperture of the camera
     public double aperture = 1d;
+    // list of lights of the scene
+    public List<LightSource> lights = new LinkedList<>();
 
+    /**
+     * constructor of the scene
+     *
+     * @param name name to call the scene
+     */
+    public Scene(String name) {
+        this.name = name;
+        geometries = new Geometries();
+    }
 
     /**
      * set the depth of focus
+     *
      * @param focalLength the depth of focus
      * @return the current object so we use builder-like design pattern
      */
@@ -38,6 +50,7 @@ public class Scene {
 
     /**
      * set the aperture
+     *
      * @param aperture the aperture of the camera eye
      * @return the current object so we use builder-like design pattern
      */
@@ -46,25 +59,20 @@ public class Scene {
         return this;
     }
 
+    /**
+     * set the lighting of the scene to the given list of lights
+     *
+     * @param lights list of loghts to add to the scene
+     * @return the current object so we use builder-like design pattern
+     */
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;
         return this;
     }
 
-    // list of lights of the scene
-    public List<LightSource> lights = new LinkedList<LightSource>();
-
-    /**
-     * c'tor of the scene
-     * @param name name to call the scene
-     */
-    public Scene(String name) {
-        this.name = name;
-        geometries = new Geometries();
-    }
-
     /**
      * set the color of hte background
+     *
      * @param _background color to set the background to
      * @return this object (similar to the builder design pattern)
      */
@@ -75,6 +83,7 @@ public class Scene {
 
     /**
      * set the ambient light of the scene
+     *
      * @param _ambientLight the ambient light ot set the scene
      * @return this object (similar to the builder design pattern)
      */
@@ -85,6 +94,7 @@ public class Scene {
 
     /**
      * set the geometries in the scene
+     *
      * @param _geometries geometries in the scene
      * @return this object (similar to the builder design pattern)
      */

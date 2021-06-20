@@ -4,7 +4,10 @@ import elements.AmbientLight;
 import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
-import geometries.*;
+import geometries.Cylinder;
+import geometries.Plane;
+import geometries.Polygon;
+import geometries.Sphere;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 import renderer.ImageWriter;
@@ -13,13 +16,13 @@ import renderer.Render;
 import scene.Scene;
 
 public class Project1 {
-    private Camera camera1 = new Camera(new Point3D(50, 130, 1000), new Vector(0, 1, 0), new Vector(0, 0, -1)) //
+    private final Camera camera1 = new Camera(new Point3D(50, 130, 1000), new Vector(0, 1, 0), new Vector(0, 0, -1)) //
             .setViewPlaneSize(200, 200).setDistance(1000);
 
-    private Camera camera2 = new Camera(new Point3D(1000, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(1000, -1000, 50))) //
+    private final Camera camera2 = new Camera(new Point3D(1000, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(1000, -1000, 50))) //
             .setViewPlaneSize(200, 200).setDistance(1000);
 
-    private Camera camera3 = new Camera(new Point3D(50, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(51, -1000, 50))) //
+    private final Camera camera3 = new Camera(new Point3D(50, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(51, -1000, 50))) //
             .setViewPlaneSize(200, 200).setDistance(1000);
 
 
@@ -85,14 +88,6 @@ public class Project1 {
 
         scene.geometries.add( //
 
-//                new Polygon(//Tray
-//                        new Point3D(-20,80,0),
-//                        new Point3D(100,80,0),
-//                        new Point3D(100,190,0),
-//                        new Point3D(-20,190,0))
-//                        .setMaterial(new Material().setkT(0).setkD(0).setkS(0).setkR(0).setnShininess(0))
-//                        .setEmission(new Color(197,198,200)),
-
                 new Plane(//floor
                         new Point3D(0, 0, -1),
                         new Vector(0, 0, 1)
@@ -108,10 +103,6 @@ public class Project1 {
                         .setMaterial(new Material().setkD(1).setkS(1).setnShininess(100).setkT(.1).setkR(0.1))
                         .setEmission(new Color(0, 0, 0)),
 
-
-//                new Sphere( new Point3D(0, 130, -10),40) //
-//                        //.setEmission(new Color(java.awt.Color.BLUE)) //
-//                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)), //
 
                 new Polygon(//front
                         new Point3D(-10, 110, 0),
@@ -247,12 +238,6 @@ public class Project1 {
                         .setEmission(new Color(197, 198, 200).scale(.5)),
 
 
-//
-//                new Sphere( new Point3D(100, 130, -10),40) //
-//                        //.setEmission(new Color(java.awt.Color.BLUE)) //
-//                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)), //
-
-
                 new Polygon(//front
                         new Point3D(90, 110, 0),
                         new Point3D(110, 110, 0),
@@ -386,23 +371,23 @@ public class Project1 {
 
 
                 new Plane(//back wall / mirror
-                        new Point3D(0, 250,0),
-                        new Point3D(250, 250,0),
-                        new Point3D(0, 250,250)
+                        new Point3D(0, 250, 0),
+                        new Point3D(250, 250, 0),
+                        new Point3D(0, 250, 250)
                 ).setMaterial(new Material().setkD(.3).setkS(.3).setkR(.5)),
 
 
                 new Plane(//left wall / mirror
-                        new Point3D(-150, 0,0),
-                        new Point3D(-150, 250,0),
-                        new Point3D(-150, 250,250)
+                        new Point3D(-150, 0, 0),
+                        new Point3D(-150, 250, 0),
+                        new Point3D(-150, 250, 250)
                 ).setMaterial(new Material().setkD(.3).setkS(.3).setkR(.5)),
 
 
                 new Plane(//right wall / mirror
-                        new Point3D(250, 0,0),
-                        new Point3D(250, 250,0),
-                        new Point3D(250, 250,250)
+                        new Point3D(250, 0, 0),
+                        new Point3D(250, 250, 0),
+                        new Point3D(250, 250, 250)
                 ).setMaterial(new Material().setkD(.3).setkS(.3).setkR(.5))
 
         );
@@ -415,7 +400,7 @@ public class Project1 {
         render.renderImage();
         render.writeToImage();
 
-                render = new Render() //
+        render = new Render() //
                 .setImageWriter(new ImageWriter("Room camera2", 600, 600)) //
                 .setCamera(camera2) //
                 .setRayTracer(new RayTracerBasic(scene));
