@@ -6,6 +6,9 @@ import primitives.Color;
  * abstract Light class that represented all kinds of lights
  */
 abstract class Light {
+    /**
+     * the color of the light
+     */
     private Color _intensity;
 
     /**

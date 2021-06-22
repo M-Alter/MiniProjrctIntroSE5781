@@ -17,7 +17,10 @@ public class RayTracerDOF extends RayTracerBasic {
     private static final double INITIAL_K = 1.0;
     Random x = new Random();
 
-
+    /**
+     * constructor to RayTracerDOF
+     * @param _scene play th super constructor with the scene
+     */
     public RayTracerDOF(Scene _scene) {
         super(_scene);
     }
@@ -31,28 +34,33 @@ public class RayTracerDOF extends RayTracerBasic {
      */
     @Override
     public Color traceRay(Ray ray) {
-
-
-        Point3D focalPoint = ray.getP0().add(ray.getDir().normalized().scale(_scene.focalLength));
-
-        double r = _scene.aperture;
-        Color resultColor = new Color(0, 0, 0);
-        Point3D head = ray.getP0();
-        Point3D tempHead;
-        Ray tempRay;
-        Intersectable.GeoPoint closestPoint;
-        for (int i = 1; i < Math.min(90 * r + 1, 361); i++) {
-            tempHead = head.add(new Vector(Math.cos((Math.PI * 2d) / (double) i), Math.sin((Math.PI * 2d) / (double) i), 0).normalized().scale(x.nextDouble() - 0.5).scale(r));
-            tempRay = new Ray(tempHead, focalPoint.subtract(tempHead));
-            closestPoint = findClosestIntersection(tempRay);
-            if (closestPoint == null) {
-                resultColor = resultColor.add(_scene.background);
-                continue;
-            }
-            resultColor = resultColor.add(calcColor(closestPoint, tempRay));
+        // run traceRay by super if DOF is
+        if(_scene.DOF == false) {
+            return super.traceRay(ray);
         }
-        resultColor = resultColor.scale(1d / (Math.min(90 * r, 360)));
-        return resultColor;
+        else {
+
+            Point3D focalPoint = ray.getP0().add(ray.getDir().normalized().scale(_scene.focalLength));
+
+            double r = _scene.aperture;
+            Color resultColor = new Color(0, 0, 0);
+            Point3D head = ray.getP0();
+            Point3D tempHead;
+            Ray tempRay;
+            Intersectable.GeoPoint closestPoint;
+            for (int i = 1; i < Math.min(90 * r + 1, 361); i++) {
+                tempHead = head.add(new Vector(Math.cos((Math.PI * 2d) / (double) i), Math.sin((Math.PI * 2d) / (double) i), 0).normalized().scale(x.nextDouble() - 0.5).scale(r));
+                tempRay = new Ray(tempHead, focalPoint.subtract(tempHead));
+                closestPoint = findClosestIntersection(tempRay);
+                if (closestPoint == null) {
+                    resultColor = resultColor.add(_scene.background);
+                    continue;
+                }
+                resultColor = resultColor.add(calcColor(closestPoint, tempRay));
+            }
+            resultColor = resultColor.scale(1d / (Math.min(90 * r, 360)));
+            return resultColor;
+        }
     }
 
     /**

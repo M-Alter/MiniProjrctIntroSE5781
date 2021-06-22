@@ -8,6 +8,9 @@ import primitives.Vector;
  * class to represent spot light
  */
 public class SpotLight extends PointLight{
+    /**
+     * vector that represent the direction of the light
+     */
     private final Vector _direction;
 
     /**

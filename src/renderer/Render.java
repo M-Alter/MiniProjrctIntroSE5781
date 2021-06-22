@@ -64,11 +64,11 @@ public class Render {
     /**
      * setter for imageWriter
      *
-     * @param _imageWriter the image writer to use
+     * @param imageWriter the image writer to use
      * @return this object (similar to builder)
      */
-    public Render setImageWriter(ImageWriter _imageWriter) {
-        this._imageWriter = _imageWriter;
+    public Render setImageWriter(ImageWriter imageWriter) {
+        this._imageWriter = imageWriter;
         return this;
     }
 

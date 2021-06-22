@@ -7,14 +7,32 @@ import primitives.*;
  */
 public class Camera {
     /**
-     * Properties of a camera
+     * _p0: point of the camera
      */
     private Point3D _p0;
+    /**
+     * _vUp: up vector from the point of the camera
+     */
     private Vector _vUp;
+    /**
+     * _vTo: vector from the point of the camera to the view
+     */
     private Vector _vTo;
+    /**
+     * _vRight: right vector from the point of the camera
+     */
     private Vector _vRight;
+    /**
+     * the width of the picture
+     */
     private double _width;
+    /**
+     * the height of the picture
+     */
     private double _height;
+    /**
+     * the distance between the (point of the) camera to the view
+     */
     private double _distance;
 
     /**

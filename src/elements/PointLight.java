@@ -14,13 +14,21 @@ public class PointLight extends Light implements LightSource{
      */
     protected final Point3D _position;
     /**
-     * double that representing the distance
+     * kC the constant coefficient to set
      */
-    private Double _kC = 1d, _kL=0d, _kQ=0d;
+    private double _kC = 1d;
+    /**
+     * kL the Linear coefficient to set
+     */
+    private double _kL = 0d;
+    /**
+     * kQ the Quadratic coefficient to set
+     */
+    private double _kQ = 0d;
 
     /**
      * setter for kC
-     * @param kC
+     * @param kC the constant coefficient to set
      * @return this
      */
     public PointLight setkC(Double kC) {
@@ -30,7 +38,7 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * setter for kL
-     * @param kL
+     * @param kL the Linear coefficient to set
      * @return this
      */
     public PointLight setkL(Double kL) {
@@ -40,7 +48,7 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * settern for kQ
-     * @param kQ
+     * @param kQ the Quadratic coefficient to set
      * @return this
      */
     public PointLight setkQ(Double kQ) {

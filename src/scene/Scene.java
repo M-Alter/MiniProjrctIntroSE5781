@@ -4,6 +4,7 @@ import elements.AmbientLight;
 import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+import renderer.RayTracerDOF;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,12 @@ public class Scene {
     public double aperture = 1d;
     // list of lights of the scene
     public List<LightSource> lights = new LinkedList<>();
+    /**
+     * boolean DOF to turn on/off tne DOF
+     */
+    public boolean DOF = false;
+
+
 
     /**
      * constructor of the scene
@@ -37,6 +44,15 @@ public class Scene {
         geometries = new Geometries();
     }
 
+    /**
+     * setter for RayTracerDOF
+     * @param DOF boolean to turn on/off the DOF
+     * @return this
+     */
+    public Scene setDOF(boolean DOF) {
+        this.DOF = DOF;
+        return this;
+    }
     /**
      * set the depth of focus
      *

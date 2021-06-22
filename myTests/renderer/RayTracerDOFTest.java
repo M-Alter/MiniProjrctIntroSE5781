@@ -17,15 +17,21 @@ import scene.Scene;
 
 import javax.management.remote.rmi.RMIConnectionImpl_Stub;
 
+import java.nio.file.attribute.UserDefinedFileAttributeView;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RayTracerDOFTest {
     private Scene scene = new Scene("Test scene");
-    private Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 1, 0), new Vector(0, 0, -1)) //
+    private final Camera camera = new Camera(new Point3D(50, 130, 1000), new Vector(0, 1, 0), new Vector(0, 0, -1)) //
             .setViewPlaneSize(200, 200).setDistance(1000);
 
     private Camera camera2 = new Camera(new Point3D(1000, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(1000, -1000, 50))) //
             .setViewPlaneSize(200, 200).setDistance(1000);
+
+    private final Camera camera3 = new Camera(new Point3D(50, -1000, 50), new Vector(0, 0, 1), new Point3D(50, 130, 50).subtract(new Point3D(51, -1000, 50))) //
+            .setViewPlaneSize(200, 200).setDistance(1000);
+
 
 
     @Test
@@ -61,7 +67,7 @@ class RayTracerDOFTest {
         Scene scene = new Scene("Room").setFocalLength(750).setAperture(1.5d);
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
         scene.background = new Color(java.awt.Color.DARK_GRAY);
-
+        scene.setDOF(true);
         scene.lights.add( //
                 new SpotLight(new Color(700, 400, 400), new Point3D(40, 40, 115), new Vector(-1, -1, -4)) //
                         .setkL(4E-4).setkQ(2E-5));
@@ -92,13 +98,15 @@ class RayTracerDOFTest {
 //                        .setEmission(new Color(0, 0, 0)),
 
 
+
+
                 new Sphere(new Point3D(0, 130, 130), 10)//light
                         .setMaterial(new Material().setkD(1).setkS(1).setnShininess(100).setkT(.1).setkR(0.1))
                         .setEmission(new Color(0, 0, 0)),
 
-//                new Sphere(new Point3D(100, 130, 130), 10)//light
-//                        .setMaterial(new Material().setkD(1).setkS(1).setnShininess(100).setkT(.1).setkR(0.1))
-//                        .setEmission(new Color(0, 0, 0)),
+                new Sphere(new Point3D(100, 130, 130), 10)//light
+                        .setMaterial(new Material().setkD(1).setkS(1).setnShininess(100).setkT(.1).setkR(0.1))
+                        .setEmission(new Color(0, 0, 0)),
 
 
 //                new Sphere( new Point3D(0, 130, -10),40) //
@@ -374,7 +382,27 @@ class RayTracerDOFTest {
                         new Point3D(150, 160, -10),
                         new Point3D(130, 180, -10))
                         .setMaterial(new Material().setkD(0.4).setkS(.9).setnShininess(50).setkR(.7).setkT(0))
-                        .setEmission(new Color(197, 198, 200).scale(.5))
+                        .setEmission(new Color(197, 198, 200).scale(.5)),
+
+                //================= Halot ==================
+                new Sphere(
+                        new Point3D(0,50,0), 20
+                ).setEmission(new Color(165,42,42)),
+                new Sphere(
+                        new Point3D(20,50,0), 20
+                ).setEmission(new Color(165,42,42)),
+                new Sphere(
+                        new Point3D(30,50,0), 20
+                ).setEmission(new Color(165,42,42)),
+                new Sphere(
+                        new Point3D(0,30,0), 20
+                ).setEmission(new Color(165,42,42)),
+                new Sphere(
+                        new Point3D(20,30,0), 20
+                ).setEmission(new Color(165,42,42)),
+                new Sphere(
+                        new Point3D(30,30,0), 20
+                ).setEmission(new Color(165,42,42))
 
 
 //
@@ -382,11 +410,12 @@ class RayTracerDOFTest {
 
 
         Render render = new Render() //
-                .setImageWriter(new ImageWriter("Room camera2 DOF", 600, 600)) //
-                .setCamera(camera2) //
+                .setImageWriter(new ImageWriter("Room camera1 DOF", 600, 600)) //
+                .setCamera(camera) //
                 .setRayTracer(new RayTracerDOF(scene));
         render.renderImage();
         render.writeToImage();
+
 
     }
 
