@@ -7,18 +7,35 @@ import primitives.Ray;
 import java.util.MissingResourceException;
 
 public class Render {
-    // parameters
+    /**
+     * the camera of the project
+     */
     private Camera _camera;
+    /**
+     * the imageWriter of the project
+     */
     private ImageWriter _imageWriter;
+    /**
+     * the rayTracer of the project
+     */
     private RayTracerBase _rayTracer;
+    // error messages
     private static final String RESOURCE_ERROR = "Renderer resource not set";
     private static final String RENDER_CLASS = "Render";
     private static final String IMAGE_WRITER_COMPONENT = "Image writer";
     private static final String CAMERA_COMPONENT = "Camera";
     private static final String RAY_TRACER_COMPONENT = "Ray tracer";
-
+    /**
+     * the thread count of the calculation
+     */
     private int _threadsCount = 0;
+    /**
+     * Spare threads if trying to use all the cores
+     */
     private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
+    /**
+     * printing progress percentage
+     */
     private boolean print = false; // printing progress percentage
 
     /**

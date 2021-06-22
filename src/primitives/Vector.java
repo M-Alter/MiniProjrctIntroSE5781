@@ -8,10 +8,15 @@ import static primitives.Point3D.*;
  */
 public class Vector {
 
-    // variable
+    /**
+     * the head of the vector
+     */
     Point3D _head;
 
-    // constructors
+    /**
+     * constructor of the vector
+     * @param head the head of the vector
+     */
     public Vector(Point3D head) {
         this._head = new Point3D(head._x, head._y, head._z);
     }
@@ -119,7 +124,7 @@ public class Vector {
     }
 
     /**
-     *
+     * function to calculate the length of the vector
      * @return the length of the Vector
      */
     public double length(){
@@ -147,7 +152,11 @@ public class Vector {
         return new Vector(_head).normalize();
     }
 
-
+    /**
+     *  override function to calculate if two vectors are equals
+     * @param o object to compare
+     * @return if this two objects are equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -156,6 +165,10 @@ public class Vector {
         return _head.equals(vector._head);
     }
 
+    /**
+     * function to return the vector as string
+     * @return the point as string
+     */
     @Override
     public String toString() {
         return _head.toString();

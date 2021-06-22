@@ -16,7 +16,13 @@ public interface Intersectable {
      * A class of a geometry point of the intersectable
      */
     public static class GeoPoint{
+        /**
+         * a field of the geometry
+         */
         public Geometry geometry;
+        /**
+         * the point of the geometry
+         */
         public Point3D point3D;
 
         /**

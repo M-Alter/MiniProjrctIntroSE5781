@@ -6,19 +6,35 @@ import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 
-    // variables
+    /**
+     * the point of the beginning
+     */
     final Point3D _p0;
+    /**
+     * the direction vector from the point
+     */
     final Vector _dir;
     /**
      * constant double DELTA = 0.1
      */
     public static final double DELTA = 0.1;
-    // constructor
+
+    /**
+     * constructor of the ray
+     * @param pnt the point of the ray
+     * @param vec the direction of the ray
+     */
     public Ray(Point3D pnt, Vector vec){
         _p0 = new Point3D(pnt._x, pnt._y, pnt._z);
         _dir = vec.normalized();
     }
 
+    /**
+     * constructor of the ray
+     * @param head the head of the ray
+     * @param dir the direction of the ray
+     * @param normal the normal of the ray
+     */
     public Ray(Point3D head, Vector dir, Vector normal){
         double nv = normal.dotProduct(dir.normalized());
         if (nv > 0)
@@ -28,16 +44,27 @@ public class Ray {
         _dir = dir.normalized();
     }
 
-    // getters
+    /**
+     * getter of the point
+     * @return the point of the ray
+     */
     public Point3D getP0() {
         return _p0;
     }
 
+    /**
+     * getter of the direction
+     * @return the direction of the ray
+     */
     public Vector getDir() {
         return _dir;
     }
 
-    // override functions
+    /**
+     *  override function to calculate if two vectors are equals
+     * @param o object to compare
+     * @return if this two objects are equals
+     */
     @Override
     public boolean equals(Object o) {
 
@@ -56,6 +83,10 @@ public class Ray {
         return _p0.add(_dir.scale(t));
     }
 
+    /**
+     * function to return the ray as string
+     * @return the point as string
+     */
     @Override
     public String toString() {
         return  "p0 = " + _p0.toString() +

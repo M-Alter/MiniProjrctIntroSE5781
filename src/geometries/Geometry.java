@@ -7,24 +7,24 @@ import primitives.*;
  */
 public abstract class Geometry implements Intersectable {
     /**
-     * emission field
+     * emission field of the color of the body
      */
     protected Color _emission = Color.BLACK;
     /**
-     * material field
+     * material field of the body
      */
     private Material _material = new Material();
 
     /**
      * abstract method getNormal
      * @param pnt point to calculation
-     * @return
+     * @return the normal between the body to the point
      */
     public abstract Vector getNormal(Point3D pnt);
 
     /**
      * setter of material
-     * @param material
+     * @param material to set
      * @return this
      */
     public Geometry setMaterial(Material material) {
@@ -50,7 +50,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * Setter of _emission
-     * @param emission
+     * @param emission the color to set
      * @return this object
      */
     public Geometry setEmission(Color emission) {

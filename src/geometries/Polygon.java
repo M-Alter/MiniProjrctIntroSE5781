@@ -85,6 +85,11 @@ public class Polygon extends Geometry {
         }
     }
 
+    /**
+     * function to receive the normal of the polygon
+     * @param point the point to calculate the normal
+     * @return the normal
+     */
     @Override
     public Vector getNormal(Point3D point) {
         return plane.getNormal();

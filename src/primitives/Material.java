@@ -4,9 +4,16 @@ package primitives;
  * class material is about to define materials
  */
 public class Material {
-    public double kD = 0d, kS = 0d;
     /**
-     * transparency
+     * represents diffuse factor.
+     */
+    public double kD = 0d;
+    /**
+     * represents specular factor.
+     */
+    public double kS = 0d;
+    /**
+     * represents transparency factor
      */
     public double kT = 0d;
 
@@ -51,7 +58,7 @@ public class Material {
 
     /**
      * setter of kS
-     * @param kS
+     * @param kS specular of the light
      * @return this
      */
     public Material setkS(double kS) {
@@ -61,7 +68,7 @@ public class Material {
 
     /**
      * setter of shininess
-     * @param nShininess
+     * @param nShininess the shininess of the material
      * @return this
      */
     public Material setnShininess(int nShininess) {

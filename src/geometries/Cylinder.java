@@ -14,6 +14,9 @@ import static primitives.Util.isZero;
  * class that represents a finite cylinder
  */
 public class Cylinder extends Tube{
+    /**
+     * the height of the cylinder
+     */
     private final double _height;
 
     /**
@@ -27,6 +30,11 @@ public class Cylinder extends Tube{
         this._height = height;
     }
 
+    /**
+     * function to find the intersections between ray to the cylinder
+     * @param ray the ray that engage the geometry body
+     * @return list of the intersections
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         List<GeoPoint> intersections = super.findGeoIntersections(ray);
@@ -43,7 +51,7 @@ public class Cylinder extends Tube{
 
     /**
      * The normal of the cylinder
-     * @param pnt
+     * @param pnt point to get normal with
      * @return The normal of the cylinder
      */
     @Override

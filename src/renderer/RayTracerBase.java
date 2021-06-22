@@ -8,6 +8,9 @@ import scene.Scene;
  * abstract class for tracing rays
  */
 public abstract class RayTracerBase {
+    /**
+     * the scene of the program
+     */
     protected Scene _scene;
 
     /**

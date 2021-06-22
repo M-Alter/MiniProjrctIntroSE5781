@@ -13,19 +13,33 @@ import java.util.List;
  * class that represents a scene that contains a camera, lights and geometric shapes
  */
 public class Scene {
-    //name of the scene
+    /**
+     * name of the scene
+     */
     public String name;
-    //color of hte background
+    /**
+     * color of hte background
+     */
     public Color background = Color.BLACK;
-    //ambient light of the scene
+    /**
+     * ambient light of the scene
+     */
     public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 0);
-    //geometric shapes in the scene
+    /**
+     * geometric shapes in the scene
+     */
     public Geometries geometries;
-    //focal length of the scene
+    /**
+     * focal length of the scene
+     */
     public double focalLength;
-    //aperture of the camera
+    /**
+     * aperture of the camera
+     */
     public double aperture = 1d;
-    // list of lights of the scene
+    /**
+     * list of lights of the scene
+     */
     public List<LightSource> lights = new LinkedList<>();
     /**
      * boolean DOF to turn on/off tne DOF

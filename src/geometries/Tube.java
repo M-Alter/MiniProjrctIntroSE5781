@@ -12,7 +12,13 @@ import static primitives.Util.alignZero;
  * class that represents a infinite tue
  */
 public class Tube extends Geometry {
+    /**
+     * the axis ray of the tube
+     */
     protected Ray _axisRay;
+    /**
+     * the radius of the tube
+     */
     protected double _radius;
 
     /**
@@ -42,6 +48,11 @@ public class Tube extends Geometry {
 
     }
 
+    /**
+     * method to find the intersections with the tube
+     * @param ray the ray that engage the geometry body
+     * @return list of the intersections
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         return null;

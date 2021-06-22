@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * class Geometries to keep all the geometries of the picture
+ */
 public class Geometries implements Intersectable {
 
     /**
@@ -32,8 +35,8 @@ public class Geometries implements Intersectable {
     }
 
     /**
-     *
-     * @param geometries
+     * add geometries to the list
+     * @param geometries geometry bodies to add to the list
      */
     public void add(Intersectable... geometries){
         _geometries.addAll(Arrays.asList(geometries));

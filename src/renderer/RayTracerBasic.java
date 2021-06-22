@@ -211,14 +211,15 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
+     * calculate the specular light according to Phong's model
      *
-     * @param ks
-     * @param l
-     * @param n
-     * @param v
-     * @param nShininess
-     * @param lightIntensity
-     * @return
+     * @param ks Coefficient for specular
+     * @param l  vector from light source
+     * @param n  normal to the point on geometry
+     * @param v  camera vector
+     * @param nShininess exponent
+     * @param lightIntensity Light intensity
+     * @return the specular light
      */
     private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
         Vector r = l.subtract(n.scale(l.dotProduct(n) * 2));
@@ -228,12 +229,13 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
+     * calculate the diffusive light according to Phong's model
      *
-     * @param kd
-     * @param l
-     * @param n
-     * @param lightIntensity
-     * @return
+     * @param kd Coefficient for diffusive
+     * @param l vector for calculation
+     * @param n vector for calculation
+     * @param lightIntensity - Light intensity
+     * @return the diffusive light
      */
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
         double ln = Math.abs(l.dotProduct(n));

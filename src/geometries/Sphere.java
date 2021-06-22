@@ -13,7 +13,13 @@ import java.util.List;
  * class that represents a sphere
  */
 public class Sphere extends Geometry{
+    /**
+     * the center of the sphere
+     */
     Point3D _center;
+    /**
+     * the radius of the sphere
+     */
     double _radius;
 
     /**
