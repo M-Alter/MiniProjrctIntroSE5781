@@ -154,4 +154,28 @@ public class Plane extends Geometry {
 
         return result;
     }
+
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray,double max) {
+        double nv = getNormal().dotProduct(ray.getDir());
+        if (isZero(nv))
+            return null;
+        try {
+            double numer = getNormal().dotProduct(getQ0().subtract(ray.getP0()));
+            double t = alignZero(numer / nv);
+            if (t > 0 && alignZero(t - max) <= 0) {
+                var p1 = ray.getPoint(t);
+                return List.of(new GeoPoint(this, p1));
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public void setMaxBoundary() {} // Already initialized
+
+    @Override
+    public void setMinBoundary() {} // Already initialized
 }

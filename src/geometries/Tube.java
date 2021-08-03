@@ -111,4 +111,33 @@ public class Tube extends Geometry {
             );
         }
     }
+
+    /**
+     * Function Return all the intersection Points of the Ray in the Geometry in
+     * specific distance ( that not bigger than max)
+     *
+     * @param ray - The ray that crosses the body
+     * @param max - maximum distance of intersection
+     * @return list of the intersection points
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray, double max) {
+        return null;
+    }
+
+    /**
+     * set the maximum Boundary for geometry
+     */
+    @Override
+    public void setMaxBoundary() {
+
+    }
+
+    /**
+     * set the minimum Boundary for geometry
+     */
+    @Override
+    public void setMinBoundary() {
+
+    }
 }

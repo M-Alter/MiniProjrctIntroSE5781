@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 import static primitives.Util.*;
 
@@ -129,5 +130,60 @@ public class Sphere extends Geometry{
             result.add(new GeoPoint(this, ray.getPoint(t2)));
         }
         return result;
+    }
+
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray, double max) {
+        double tm;
+        double d;
+        var p0 = ray.getP0();
+        try {
+            var u = _center.subtract(p0);
+            tm = ray.getDir().dotProduct(u);
+            d = Math.sqrt(u.lengthSquared() - (tm * tm));
+            if (d >= _radius)
+                return null;
+        } catch (Exception e) {
+            d = 0;
+            tm = 0;
+        }
+        double th = Math.sqrt(_radius * _radius - (d * d));
+        double t1 = Util.alignZero(tm + th);
+        double t2 = Util.alignZero(tm - th);
+        double dis1 = Util.alignZero(t1 - max);
+        double dis2 = Util.alignZero(t2 - max);
+        Point3D p1, p2;
+        if (t1 > 0 && dis1 <= 0 || t2 > 0 && dis2 <= 0) {
+            List<GeoPoint> myList = new LinkedList<GeoPoint>();
+            if (t1 > 0 && dis1 <= 0) {
+                p1 = ray.getPoint(t1);
+                if (!p1.equals(p0))
+                    myList.add(new GeoPoint(this, p1));
+            }
+            if (t2 > 0 && dis2 <= 0) {
+                p2 = ray.getPoint(t2);
+                if (!p2.equals(p0))
+                    myList.add(new GeoPoint(this, p2));
+            }
+            return myList;
+        }
+        return null;
+    }
+
+    @Override
+    public void setMaxBoundary() {
+        double x = _center.getX() + _radius;
+        double y = _center.getY() + _radius;
+        double z = _center.getZ() + _radius;
+        maxBoundary = new Point3D(x, y, z);
+
+    }
+
+    @Override
+    public void setMinBoundary() {
+        double x = _center.getX() - _radius;
+        double y = _center.getY() - _radius;
+        double z = _center.getZ() - _radius;
+        minBoundary = new Point3D(x, y, z);
     }
 }

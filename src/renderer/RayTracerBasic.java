@@ -192,7 +192,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param gp the body that we check if is unshaded
      * @return boolean if this shaded or not
      */
-    private double transparency(LightSource light, Vector l, Vector n, GeoPoint gp) {
+    protected double transparency(LightSource light, Vector l, Vector n, GeoPoint gp) {
         Vector lightDirection = l.scale(-1); // from point to light source
 
         Ray lightRay = new Ray(gp.point3D, lightDirection, n);

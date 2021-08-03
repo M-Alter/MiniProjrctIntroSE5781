@@ -5,7 +5,7 @@ import primitives.*;
 /**
  * abstract class to represent geometry body
  */
-public abstract class Geometry implements Intersectable {
+public abstract class Geometry extends Intersectable {
     /**
      * emission field of the color of the body
      */

@@ -209,4 +209,82 @@ public class Polygon extends Geometry {
 //        }
 //        return result;
     }
+
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray, double max) {
+        var myList = plane.findGeoIntersections(ray, max);
+        if (myList == null)
+            return null;
+        var dir = ray.getDir();
+
+        var p0 = ray.getP0();
+        var vectors = new LinkedList<Vector>();
+        for (var vertice : vertices)
+            vectors.add(vertice.subtract(p0));
+
+        var normals = new LinkedList<Vector>();
+        for (int i = 0; i < vectors.size() - 1; i++) {
+            normals.add(vectors.get(i).crossProduct(vectors.get(i + 1)));
+        }
+        normals.add(vectors.getLast().crossProduct(vectors.getFirst()));
+
+        Boolean isPositive = false, isNegative = false;
+        for (var normal : normals) {
+            var result = alignZero(normal.dotProduct(dir));
+            if (result != 0) {
+                if (result > 0) {
+                    isPositive = true;
+                    if (isNegative == true)
+                        return null;
+                } else if (result < 0) {
+                    isNegative = true;
+                    if (isPositive == true)
+                        return null;
+                }
+            } else
+                return null;
+        }
+
+        return List.of(new GeoPoint(this, myList.get(0).point3D));
+    }
+
+    @Override
+    public void setMaxBoundary() {
+        double maxX = Double.NEGATIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+        double maxZ = Double.NEGATIVE_INFINITY;
+        double x, y, z;
+        for (Point3D p : vertices) {
+            x = p.getX();
+            y = p.getY();
+            z = p.getZ();
+            if (x > maxX)
+                maxX = x;
+            if (y > maxY)
+                maxY = y;
+            if (z > maxZ)
+                maxZ = z;
+        }
+        maxBoundary = new Point3D(maxX , maxY , maxZ);
+    }
+
+    @Override
+    public void setMinBoundary() {
+        double minX = Double.POSITIVE_INFINITY;
+        double minY = Double.POSITIVE_INFINITY;
+        double minZ = Double.POSITIVE_INFINITY;
+        double x, y, z;
+        for (Point3D p : vertices) {
+            x = p.getX();
+            y = p.getY();
+            z = p.getZ();
+            if (x < minX)
+                minX = x;
+            if (y < minY)
+                minY = y;
+            if (z < minZ)
+                minZ = z;
+        }
+        minBoundary = new Point3D(minX, minY, minZ);
+    }
 }
