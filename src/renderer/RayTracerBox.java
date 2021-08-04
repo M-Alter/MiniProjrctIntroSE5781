@@ -1,6 +1,3 @@
-/**
- *
- */
 package renderer;
 
 import java.util.List;
@@ -20,7 +17,7 @@ import scene.Scene;
  * @version 1.0
  * @author David and Matan
  */
-public class RayTracerBox extends RayTracerBasic {
+public class RayTracerBox extends RayTracerDOF {
 
     private Box box;
 

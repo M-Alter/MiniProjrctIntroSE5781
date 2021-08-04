@@ -1560,8 +1560,27 @@ public class TeapotTest {
      * Produce a scene with a 3D model and render it into a png image
      */
     @Test
-    public void teapotWithBoxAndMT() {
-        ImageWriter imageWriter = new ImageWriter("teapotWithBoxAndMT", 800, 800);
+    public void teapotWithBox() {
+        ImageWriter imageWriter = new ImageWriter("teapotWithBox", 800, 800);
+        Render render = new Render() //
+                .setCamera(camera) //
+                .setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBox(scene).setBox(4)) //
+                .setMultithreading(3).setDebugPrint();
+        render.renderImage();
+        render.printGrid(50, new Color(java.awt.Color.YELLOW));
+        render.writeToImage();
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void teapotWithBoxAndDOF() {
+        ImageWriter imageWriter = new ImageWriter("teapotWithBoxAndDOF", 800, 800);
+        scene.setDOF(true)
+                .setAperture(1.5)
+                .setFocalLength(500);
         Render render = new Render() //
                 .setCamera(camera) //
                 .setImageWriter(imageWriter) //
